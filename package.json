@@ -1,6 +1,6 @@
 {
   "name": "vertical-agent-forge",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Production-grade self-improvement control plane for OpenClaw vertical agents",
   "type": "module",
   "bin": {

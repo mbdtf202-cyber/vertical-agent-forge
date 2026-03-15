@@ -1,0 +1,7 @@
+{
+  "id": "travel-concierge",
+  "label": "Travel Concierge",
+  "domainTemplate": "travel-concierge",
+  "summary": "Shortlist-first trip design and customer preference continuity.",
+  "initCommand": "node ./bin/vertical-agent-forge.mjs init --domain travel-concierge"
+}

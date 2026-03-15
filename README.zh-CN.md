@@ -122,6 +122,8 @@ node ./bin/vertical-agent-forge.mjs install
 ```bash
 node ./bin/vertical-agent-forge.mjs install
 node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs init --domain saas-support
+node ./bin/vertical-agent-forge.mjs upgrade
 node ./bin/vertical-agent-forge.mjs doctor
 node ./bin/vertical-agent-forge.mjs uninstall
 ```
@@ -130,6 +132,10 @@ node ./bin/vertical-agent-forge.mjs uninstall
   - 安装 toolkit workspace 并合并配置
 - `activate`
   - 执行 install，并触发初始 forge bootstrap
+- `init --domain <template>`
+  - 从内置模板初始化 `knowledge/domain/`
+- `upgrade`
+  - 刷新 toolkit snapshot 并重新合并受管配置
 - `doctor`
   - 检查配置、workspace、toolkit 和 agents 是否就绪
 - `uninstall`
@@ -141,6 +147,8 @@ node ./bin/vertical-agent-forge.mjs uninstall
   - [README.md](./README.md)
 - 中文总览：
   - [README.zh-CN.md](./README.zh-CN.md)
+- 示例：
+  - [docs/EXAMPLES.md](./docs/EXAMPLES.md)
 - 架构：
   - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 - 运维：

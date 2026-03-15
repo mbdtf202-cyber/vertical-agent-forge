@@ -107,6 +107,39 @@
         </article>
       </section>
 
+      <section class="comparison" id="comparison">
+        <div class="section-head">
+          <p class="eyebrow">Comparison</p>
+          <h2>What makes this a product, not a prompt hack</h2>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h3>Single Prompt Agent</h3>
+            <ul>
+              <li>One runtime does everything</li>
+              <li>Quality rules drift over time</li>
+              <li>Hard to audit regressions</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <h3>Ad-hoc Multi-Agent</h3>
+            <ul>
+              <li>Better separation, weak release discipline</li>
+              <li>Artifacts are inconsistent</li>
+              <li>Promotion logic is often implicit</li>
+            </ul>
+          </div>
+          <div class="compare-card featured">
+            <h3>Vertical Agent Forge</h3>
+            <ul>
+              <li>Durable task and wake runtime</li>
+              <li>Bounded roles with explicit gates</li>
+              <li>Reusable artifacts, memory, and release assets</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section class="workflow" id="workflow">
         <div class="section-head">
           <p class="eyebrow">Workflow</p>
@@ -162,6 +195,30 @@
         </div>
       </section>
 
+      <section class="examples">
+        <div class="section-head">
+          <p class="eyebrow">Examples</p>
+          <h2>One-click domain templates</h2>
+        </div>
+        <div class="panel-grid">
+          <article class="panel">
+            <h2>SaaS Support</h2>
+            <p>Billing policy, upgrades, refunds, plan eligibility.</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+          </article>
+          <article class="panel">
+            <h2>Travel Concierge</h2>
+            <p>Shortlist-first destination guidance and route tradeoffs.</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain travel-concierge</code></pre>
+          </article>
+          <article class="panel">
+            <h2>Research Ops</h2>
+            <p>Evidence synthesis, triage, and internal analyst workflows.</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain research-ops</code></pre>
+          </article>
+        </div>
+      </section>
+
       <section class="cli" id="cli">
         <div class="section-head">
           <p class="eyebrow">CLI Lifecycle</p>
@@ -170,8 +227,47 @@
         <div class="code-grid">
           <pre><code>node ./bin/vertical-agent-forge.mjs install</code></pre>
           <pre><code>node ./bin/vertical-agent-forge.mjs activate</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs upgrade</code></pre>
           <pre><code>node ./bin/vertical-agent-forge.mjs doctor</code></pre>
           <pre><code>node ./bin/vertical-agent-forge.mjs uninstall</code></pre>
+        </div>
+      </section>
+
+      <section class="pricing" id="pricing">
+        <div class="section-head">
+          <p class="eyebrow">Pricing</p>
+          <h2>Open source toolkit, bring your own runtime</h2>
+        </div>
+        <div class="pricing-grid">
+          <div class="price-card">
+            <h3>Toolkit</h3>
+            <strong>Free</strong>
+            <p>MIT-licensed product repository and release artifacts.</p>
+          </div>
+          <div class="price-card">
+            <h3>Runtime Cost</h3>
+            <strong>Your OpenClaw provider</strong>
+            <p>Model, storage, and infrastructure costs come from your own deployment.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="section-head">
+          <p class="eyebrow">Contact</p>
+          <h2>Use the repository as the operator touchpoint</h2>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/issues"
+            >GitHub Issues</a
+          >
+          <a class="contact-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/releases"
+            >Release Archive</a
+          >
+          <a class="contact-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge"
+            >Repository</a
+          >
         </div>
       </section>
     </main>

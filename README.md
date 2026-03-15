@@ -124,6 +124,8 @@ It works by adding:
 ```bash
 node ./bin/vertical-agent-forge.mjs install
 node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs init --domain saas-support
+node ./bin/vertical-agent-forge.mjs upgrade
 node ./bin/vertical-agent-forge.mjs doctor
 node ./bin/vertical-agent-forge.mjs uninstall
 ```
@@ -132,6 +134,10 @@ node ./bin/vertical-agent-forge.mjs uninstall
   - installs the toolkit workspace and merges config
 - `activate`
   - runs install and triggers the initial forge bootstrap turn
+- `init --domain <template>`
+  - seeds `knowledge/domain/` from a packaged example template
+- `upgrade`
+  - refreshes the toolkit snapshot and re-merges managed config
 - `doctor`
   - reports whether config, workspace, toolkit, and agents are present
 - `uninstall`
@@ -143,6 +149,8 @@ node ./bin/vertical-agent-forge.mjs uninstall
   - [README.md](./README.md)
 - Chinese overview:
   - [README.zh-CN.md](./README.zh-CN.md)
+- examples:
+  - [docs/EXAMPLES.md](./docs/EXAMPLES.md)
 - architecture:
   - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 - operations:

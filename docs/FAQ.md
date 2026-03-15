@@ -28,3 +28,11 @@ It installs the product and then asks `app-forge` to initialize the runtime loop
 ## What does uninstall remove?
 
 It removes managed forge agents from OpenClaw config and cleans toolkit files.
+
+## What does init do?
+
+It seeds the installed domain pack from a packaged example template.
+
+## What does upgrade do?
+
+It refreshes the toolkit snapshot and re-merges the managed OpenClaw config.

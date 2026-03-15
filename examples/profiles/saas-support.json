@@ -1,0 +1,7 @@
+{
+  "id": "saas-support",
+  "label": "SaaS Support",
+  "domainTemplate": "saas-support",
+  "summary": "Subscription support, billing rules, and plan eligibility.",
+  "initCommand": "node ./bin/vertical-agent-forge.mjs init --domain saas-support"
+}

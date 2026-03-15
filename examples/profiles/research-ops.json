@@ -1,0 +1,7 @@
+{
+  "id": "research-ops",
+  "label": "Research Ops",
+  "domainTemplate": "research-ops",
+  "summary": "Internal research triage, evidence synthesis, and analyst workflows.",
+  "initCommand": "node ./bin/vertical-agent-forge.mjs init --domain research-ops"
+}

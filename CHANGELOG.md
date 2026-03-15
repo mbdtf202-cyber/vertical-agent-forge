@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.4
+
+### Features
+
+- Added `init --domain <template>` and `upgrade` lifecycle commands.
+- Added example domain templates and one-click demo profiles.
+- Expanded the landing site with comparison, examples, pricing, and contact sections.
+
 ## 0.1.3
 
 ### Features

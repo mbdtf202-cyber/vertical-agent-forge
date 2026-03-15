@@ -100,6 +100,39 @@
         </article>
       </section>
 
+      <section class="comparison" id="comparison">
+        <div class="section-head">
+          <p class="eyebrow">对比</p>
+          <h2>为什么它是产品，而不是 prompt 技巧</h2>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h3>单 Prompt Agent</h3>
+            <ul>
+              <li>一个 runtime 包办所有事</li>
+              <li>质量规则容易漂移</li>
+              <li>回归难以审计</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <h3>临时多 Agent</h3>
+            <ul>
+              <li>有分工，但 release discipline 弱</li>
+              <li>artifact 不稳定</li>
+              <li>晋升逻辑常常是隐式的</li>
+            </ul>
+          </div>
+          <div class="compare-card featured">
+            <h3>Vertical Agent Forge</h3>
+            <ul>
+              <li>durable task 与 wake runtime</li>
+              <li>有边界角色与明确门禁</li>
+              <li>可复用 artifact、memory 和 release assets</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section class="workflow" id="workflow">
         <div class="section-head">
           <p class="eyebrow">流程</p>
@@ -155,6 +188,30 @@
         </div>
       </section>
 
+      <section class="examples">
+        <div class="section-head">
+          <p class="eyebrow">Examples</p>
+          <h2>一键初始化的领域模板</h2>
+        </div>
+        <div class="panel-grid">
+          <article class="panel">
+            <h2>SaaS Support</h2>
+            <p>账单策略、升级降级、退款和 plan eligibility。</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+          </article>
+          <article class="panel">
+            <h2>Travel Concierge</h2>
+            <p>shortlist-first 旅行推荐与路线 tradeoff。</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain travel-concierge</code></pre>
+          </article>
+          <article class="panel">
+            <h2>Research Ops</h2>
+            <p>证据整理、研究分诊与内部分析流程。</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain research-ops</code></pre>
+          </article>
+        </div>
+      </section>
+
       <section class="cli" id="cli">
         <div class="section-head">
           <p class="eyebrow">CLI 生命周期</p>
@@ -163,8 +220,47 @@
         <div class="code-grid">
           <pre><code>node ./bin/vertical-agent-forge.mjs install</code></pre>
           <pre><code>node ./bin/vertical-agent-forge.mjs activate</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs upgrade</code></pre>
           <pre><code>node ./bin/vertical-agent-forge.mjs doctor</code></pre>
           <pre><code>node ./bin/vertical-agent-forge.mjs uninstall</code></pre>
+        </div>
+      </section>
+
+      <section class="pricing" id="pricing">
+        <div class="section-head">
+          <p class="eyebrow">Pricing</p>
+          <h2>工具包免费，运行成本由你自己的 OpenClaw 环境承担</h2>
+        </div>
+        <div class="pricing-grid">
+          <div class="price-card">
+            <h3>Toolkit</h3>
+            <strong>免费</strong>
+            <p>MIT 协议开源产品仓库与 release 资产。</p>
+          </div>
+          <div class="price-card">
+            <h3>运行成本</h3>
+            <strong>取决于你的 OpenClaw provider</strong>
+            <p>模型、存储和基础设施成本来自你自己的部署。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="section-head">
+          <p class="eyebrow">Contact</p>
+          <h2>以仓库作为运营入口</h2>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/issues"
+            >GitHub Issues</a
+          >
+          <a class="contact-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/releases"
+            >Release Archive</a
+          >
+          <a class="contact-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge"
+            >Repository</a
+          >
         </div>
       </section>
     </main>

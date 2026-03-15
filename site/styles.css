@@ -173,29 +173,45 @@ main {
 }
 
 .panel-grid,
+.compare-grid,
+.pricing-grid,
+.contact-grid,
 .showcase-grid,
 .code-grid {
   display: grid;
   gap: 22px;
 }
 
-.panel-grid {
+.panel-grid,
+.compare-grid {
   grid-template-columns: repeat(3, 1fr);
   margin: 72px 0;
 }
 
 .panel,
+.compare-card,
 .workflow,
 .showcase,
-.cli {
+.cli,
+.pricing,
+.contact,
+.examples,
+.comparison {
   margin-top: 72px;
 }
 
-.panel {
+.panel,
+.compare-card,
+.price-card {
   padding: 28px;
   border: 1px solid var(--line);
   border-radius: 24px;
   background: rgba(19, 45, 61, 0.74);
+}
+
+.compare-card.featured {
+  background: linear-gradient(180deg, rgba(244, 162, 97, 0.14), rgba(16, 38, 51, 0.86));
+  border-color: rgba(244, 162, 97, 0.6);
 }
 
 .panel h2 {
@@ -296,6 +312,34 @@ main {
   margin-top: 28px;
 }
 
+.pricing-grid {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 28px;
+}
+
+.price-card strong {
+  display: block;
+  margin: 14px 0;
+  font-size: 36px;
+  color: var(--accent);
+}
+
+.contact-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+}
+
+.contact-link {
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(19, 45, 61, 0.72);
+  color: var(--text);
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+}
+
 pre {
   margin: 0;
   padding: 20px;
@@ -314,8 +358,11 @@ code {
 @media (max-width: 1100px) {
   .hero,
   .panel-grid,
+  .compare-grid,
   .showcase-grid,
-  .code-grid {
+  .code-grid,
+  .pricing-grid,
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 

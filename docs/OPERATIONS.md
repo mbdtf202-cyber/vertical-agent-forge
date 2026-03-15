@@ -17,6 +17,8 @@
 
 - `node ./bin/vertical-agent-forge.mjs install`
 - `node ./bin/vertical-agent-forge.mjs activate`
+- `node ./bin/vertical-agent-forge.mjs init --domain saas-support`
+- `node ./bin/vertical-agent-forge.mjs upgrade`
 - `node ./bin/vertical-agent-forge.mjs doctor`
 - `node ./bin/vertical-agent-forge.mjs uninstall`
 

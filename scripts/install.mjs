@@ -12,6 +12,7 @@ const repoRoot = path.resolve(__dirname, "..");
 const kitDir = path.join(repoRoot, "kit");
 const kitWorkspaceDir = path.join(kitDir, "workspace");
 const kitConfigPath = path.join(kitDir, "openclaw.partial.json5");
+const examplesDir = path.join(repoRoot, "examples");
 const DEFAULT_ACTIVATE_MESSAGE =
   "Read HEARTBEAT.md, initialize any missing runtime tasks, and move the platform into continuous-worker mode.";
 
@@ -35,6 +36,10 @@ function resolveInstallPaths(env = process.env, workspaceSlug = DEFAULT_WORKSPAC
 
 function ensureDir(target) {
   fs.mkdirSync(target, { recursive: true });
+}
+
+function fileExists(target) {
+  return fs.existsSync(target);
 }
 
 function readJson5File(filePath, fallback) {
@@ -85,6 +90,18 @@ function removeIfExists(target) {
     }
   }
   return true;
+}
+
+function listDomainTemplates() {
+  const templateRoot = path.join(examplesDir, "templates");
+  if (!fileExists(templateRoot)) {
+    return [];
+  }
+  return fs
+    .readdirSync(templateRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
 }
 
 function upsertAgentList(existing = [], incoming = []) {
@@ -235,6 +252,41 @@ export function installProduct(options = {}) {
   };
 }
 
+export function upgradeProduct(options = {}) {
+  const install = installProduct(options);
+  return {
+    productId: PRODUCT_ID,
+    upgraded: true,
+    install,
+  };
+}
+
+export function initDomainTemplate(options = {}) {
+  const templateName = options.domainTemplate;
+  if (!templateName) {
+    throw new Error("init requires --domain <template>");
+  }
+  const templateRoot = path.join(examplesDir, "templates", templateName, "domain");
+  if (!fileExists(templateRoot)) {
+    throw new Error(`unknown domain template: ${templateName}`);
+  }
+  const workspaceSlug = options.workspaceSlug || DEFAULT_WORKSPACE_SLUG;
+  const paths = resolveInstallPaths(process.env, workspaceSlug);
+  const domainDir = path.join(paths.workspaceDir, "knowledge", "domain");
+  ensureDir(domainDir);
+  fs.cpSync(templateRoot, domainDir, {
+    recursive: true,
+    dereference: false,
+    force: true,
+  });
+  return {
+    productId: PRODUCT_ID,
+    domainTemplate: templateName,
+    domainDir,
+    copiedFrom: templateRoot,
+  };
+}
+
 export function activateProduct(options = {}) {
   const install = installProduct(options);
   const workspaceSlug = options.workspaceSlug || DEFAULT_WORKSPACE_SLUG;
@@ -286,6 +338,7 @@ export function doctorProduct(options = {}) {
       installed: [...installedAgents],
       missing: [...expectedAgents].filter((id) => !installedAgents.has(id)),
     },
+    domainTemplates: listDomainTemplates(),
   };
 }
 
@@ -336,6 +389,8 @@ Usage:
   vertical-agent-forge install
   vertical-agent-forge activate
   vertical-agent-forge doctor
+  vertical-agent-forge init --domain <template>
+  vertical-agent-forge upgrade
   vertical-agent-forge uninstall
 
 Environment:
@@ -346,6 +401,14 @@ Environment:
 
 export async function runCli(argv) {
   const [command] = argv;
+  const args = argv.slice(1);
+  const readOption = (name) => {
+    const index = args.indexOf(name);
+    if (index === -1) {
+      return undefined;
+    }
+    return args[index + 1];
+  };
   if (!command || command === "-h" || command === "--help") {
     printUsage();
     return;
@@ -357,6 +420,18 @@ export async function runCli(argv) {
   }
   if (command === "doctor") {
     const result = doctorProduct();
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+  if (command === "init") {
+    const result = initDomainTemplate({
+      domainTemplate: readOption("--domain"),
+    });
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+  if (command === "upgrade") {
+    const result = upgradeProduct();
     console.log(JSON.stringify(result, null, 2));
     return;
   }
