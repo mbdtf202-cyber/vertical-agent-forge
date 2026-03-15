@@ -4,7 +4,7 @@
 
 Production-grade self-improvement control plane for OpenClaw vertical agents.
 
-![Vertical Agent Forge banner](./site/assets/screenshots/banner.png)
+![Vertical Agent Forge banner](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/banner.png)
 
 Vertical Agent Forge packages a complete improvement operating system around one
 user-facing vertical application agent. It gives OpenClaw users a hot-pluggable,
@@ -61,7 +61,7 @@ flowchart LR
   H --> D["skills / playbooks / memory / release assets"]
 ```
 
-![Control surfaces](./site/assets/screenshots/console-panels.png)
+![Control surfaces](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/console-panels.png)
 
 ## Product Capabilities
 
@@ -78,7 +78,7 @@ flowchart LR
 
 ## Product Screens
 
-![Landing page screenshot](./site/assets/screenshots/landing-page.png)
+![Landing page screenshot](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/landing-page.png)
 
 ## Install
 
@@ -110,12 +110,14 @@ node ./bin/vertical-agent-forge.mjs install
 
 ## What The Installer Does
 
-- copies `kit/workspace/` into your OpenClaw state directory
 - installs the toolkit snapshot under `~/.openclaw/toolkits/vertical-agent-forge`
+- syncs managed workspace assets into your OpenClaw state directory
+- keeps user domain and runtime files outside the managed overwrite set
 - merges the multi-agent config into your active OpenClaw config
 - preserves your current provider/model selection
 - pins forge subagents to your current default model so role agents stay on the
   same provider family
+- rolls managed file/config changes back if `openclaw config validate` fails
 
 ## Hot Plug / Hot Load Model
 
@@ -146,13 +148,15 @@ node ./bin/vertical-agent-forge.mjs uninstall
 - `activate`
   - runs install and triggers the initial forge bootstrap turn
 - `init --domain <template>`
-  - seeds `knowledge/domain/` from a packaged example template
+  - seeds `knowledge/domain/` from packaged runtime templates inside `kit/domain-templates/`
 - `upgrade`
-  - refreshes the toolkit snapshot and re-merges managed config
+  - refreshes the toolkit snapshot, overwrites managed assets, and preserves user/runtime files
 - `doctor`
   - reports whether config, workspace, toolkit, and agents are present
 - `uninstall`
-  - removes managed forge agents from config and cleans toolkit files
+  - removes managed forge agents and managed config while preserving the workspace by default
+- `uninstall --purge-workspace`
+  - removes the managed config/toolkit and then deletes the workspace too
 
 ## Documentation
 

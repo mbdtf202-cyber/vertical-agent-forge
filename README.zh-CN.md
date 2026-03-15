@@ -4,7 +4,7 @@
 
 面向 OpenClaw 垂直应用 agent 的生产级自我迭代控制平面。
 
-![Vertical Agent Forge banner](./site/assets/screenshots/banner.png)
+![Vertical Agent Forge banner](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/banner.png)
 
 Vertical Agent Forge 不是一个“大 prompt”，而是一套完整的改进操作系统，用于给一个用户侧垂直应用 agent 增加以下能力：
 
@@ -59,7 +59,7 @@ flowchart LR
   H --> D["skills / playbooks / memory / release assets"]
 ```
 
-![Control surfaces](./site/assets/screenshots/console-panels.png)
+![Control surfaces](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/console-panels.png)
 
 ## 产品能力
 
@@ -76,7 +76,7 @@ flowchart LR
 
 ## 产品截图
 
-![Landing page screenshot](./site/assets/screenshots/landing-page.zh-CN.png)
+![Landing page screenshot](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/landing-page.zh-CN.png)
 
 ## 安装
 
@@ -108,11 +108,13 @@ node ./bin/vertical-agent-forge.mjs install
 
 ## 安装器会做什么
 
-- 把 `kit/workspace/` 复制到你的 OpenClaw state 目录
 - 把 toolkit snapshot 安装到 `~/.openclaw/toolkits/vertical-agent-forge`
+- 把受管 workspace 资产同步到你的 OpenClaw state 目录
+- 保留不属于受管覆盖集合的用户 domain 和运行期文件
 - 把多 agent 配置合并进当前 OpenClaw 配置
 - 保留你当前已有的 provider / model 选择
 - 自动让 forge subagents 继承你当前的默认模型，避免角色链漂到不可用 provider
+- 如果 `openclaw config validate` 失败，会回滚受管文件和配置改动
 
 ## 热插拔 / 热加载模型
 
@@ -144,13 +146,15 @@ node ./bin/vertical-agent-forge.mjs uninstall
 - `activate`
   - 执行 install，并触发初始 forge bootstrap
 - `init --domain <template>`
-  - 从内置模板初始化 `knowledge/domain/`
+  - 从 `kit/domain-templates/` 里的打包模板初始化 `knowledge/domain/`
 - `upgrade`
-  - 刷新 toolkit snapshot 并重新合并受管配置
+  - 刷新 toolkit snapshot、覆盖受管资产，并保留用户/运行期文件
 - `doctor`
   - 检查配置、workspace、toolkit 和 agents 是否就绪
 - `uninstall`
-  - 从配置中移除受管 forge agents，并清理 toolkit 文件
+  - 从配置中移除受管 forge agents 和受管配置，默认保留 workspace
+- `uninstall --purge-workspace`
+  - 在移除受管配置/toolkit 之后，再删除整个 workspace
 
 ## 文档
 

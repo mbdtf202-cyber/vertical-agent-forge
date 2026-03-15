@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0
+
+### Features
+
+- Fixed packaged `init --domain` by shipping runtime templates inside `kit/domain-templates/`.
+- Made `upgrade` refresh managed toolkit/workspace assets while preserving user domain and runtime files.
+- Made install transactional with rollback when `openclaw config validate` fails.
+- Changed `uninstall` to preserve the workspace by default and added `--purge-workspace` for destructive removal.
+- Slimmed the npm package to runtime-only assets while keeping the GitHub release archive full-fat.
+
 ## 0.1.6
 
 ### Features

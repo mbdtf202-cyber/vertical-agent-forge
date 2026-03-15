@@ -6,6 +6,8 @@ Available domain templates:
 - `travel-concierge`
 - `research-ops`
 
+These templates ship in the packaged runtime under `kit/domain-templates/`.
+
 Initialize one with:
 
 ```bash

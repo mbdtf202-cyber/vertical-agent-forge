@@ -5,7 +5,8 @@
 - keep a stable OpenClaw provider
 - install Vertical Agent Forge into an existing OpenClaw home
 - keep `app-forge` internal
-- maintain your domain pack under `kit/workspace/knowledge/domain/`
+- maintain your active domain pack under `~/.openclaw/workspaces/vertical-agent-forge/knowledge/domain/`
+- treat `kit/domain-templates/` as the packaged template source used by `init --domain`
 
 ## Operational Checks
 
@@ -21,6 +22,20 @@
 - `node ./bin/vertical-agent-forge.mjs upgrade`
 - `node ./bin/vertical-agent-forge.mjs doctor`
 - `node ./bin/vertical-agent-forge.mjs uninstall`
+- `node ./bin/vertical-agent-forge.mjs uninstall --purge-workspace`
+
+## Install And Upgrade Semantics
+
+- `install` and `upgrade` overwrite managed toolkit and workspace assets only
+- user domain files and runtime artifacts are preserved across `upgrade`
+- config changes are validated with `openclaw config validate`
+- if validation fails, managed file and config changes are rolled back
+
+## Uninstall Semantics
+
+- `uninstall` removes managed agents, managed config, and the toolkit snapshot
+- `uninstall` preserves the workspace by default
+- `uninstall --purge-workspace` is the destructive path that removes the workspace too
 
 ## Runtime Monitoring
 

@@ -1,6 +1,6 @@
 {
   "name": "vertical-agent-forge",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Production-grade self-improvement control plane for OpenClaw vertical agents",
   "repository": {
     "type": "git",
@@ -18,9 +18,7 @@
     "bin/",
     "kit/",
     "docs/",
-    "site/",
-    "scripts/",
-    "templates/",
+    "scripts/install.mjs",
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
