@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Agent Forge</title>
+    <meta
+      name="description"
+      content="面向 OpenClaw 垂直应用 agent 的生产级自我迭代控制平面。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="theme-home">
+    <header class="topbar">
+      <div class="brand">Vertical Agent Forge</div>
+      <nav class="topnav">
+        <a href="#product">产品</a>
+        <a href="#workflow">流程</a>
+        <a href="#cli">CLI</a>
+        <a href="./index.html">English</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="product">
+        <div class="hero-copy">
+          <p class="eyebrow">OpenClaw 生产级工具包</p>
+          <h1>把垂直 agent 做成产品，而不是大 prompt。</h1>
+          <p class="lede">
+            Vertical Agent Forge 为 OpenClaw 增加一个 durable improvement loop：
+            多角色 agent、release gate、artifact 合同，以及热插拔安装方式。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/releases/latest"
+              >下载发布包</a
+            >
+            <a class="button secondary" href="https://github.com/mbdtf202-cyber/vertical-agent-forge"
+              >查看仓库</a
+            >
+          </div>
+          <ul class="mini-specs">
+            <li>直接热插拔到现有 OpenClaw 环境</li>
+            <li>Worker / Critic / Adversary / Promoter / Archivist</li>
+            <li>durable task 与 wake 调度</li>
+          </ul>
+        </div>
+        <div class="hero-panel">
+          <div class="glass">
+            <div class="glass-head">
+              <span class="dot red"></span>
+              <span class="dot gold"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="hero-metric">
+              <span>app-main</span>
+              <strong>用户交付</strong>
+            </div>
+            <div class="hero-metric">
+              <span>app-forge</span>
+              <strong>持续改进</strong>
+            </div>
+            <div class="hero-metric">
+              <span>release gate</span>
+              <strong>先证据，后晋升</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel">
+          <h2>角色清晰</h2>
+          <p>把用户交付和质量控制拆开，不让一个 agent 同时承担两种责任。</p>
+          <ul>
+            <li><code>app-main</code> 面向用户</li>
+            <li><code>app-forge</code> 编排改进</li>
+            <li>子 agent 保持有边界、可追责</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>持久化编排</h2>
+          <p>
+            直接复用 OpenClaw 现有 runtime：<code>task</code>、
+            <code>continuous-worker</code>、wake、subagent。
+          </p>
+          <ul>
+            <li>进度跨多轮持久存在</li>
+            <li>wake 不依赖单次聊天</li>
+            <li>核心证据留在文件里</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>发布纪律</h2>
+          <p>每个改动都要经过 proposal、critique、adversarial review 和 promotion。</p>
+          <ul>
+            <li>candidate artifact</li>
+            <li>scorecard 与 attack report</li>
+            <li>decision 与 distillation record</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="workflow" id="workflow">
+        <div class="section-head">
+          <p class="eyebrow">流程</p>
+          <h2>从用户流量到 durable lesson</h2>
+        </div>
+        <div class="flow-row">
+          <div class="flow-card">用户流量</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-card">app-main</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-card">forge inbox</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-card accent">app-forge</div>
+        </div>
+        <div class="flow-row secondary">
+          <div class="flow-card slim">Worker</div>
+          <div class="flow-card slim">Critic</div>
+          <div class="flow-card slim">Adversary</div>
+          <div class="flow-card slim">Promoter</div>
+          <div class="flow-card slim">Archivist</div>
+        </div>
+        <div class="artifact-stack">
+          <div class="artifact">candidate.json</div>
+          <div class="artifact">critic.json</div>
+          <div class="artifact">adversary.json</div>
+          <div class="artifact">decision.json</div>
+          <div class="artifact">distill.json</div>
+        </div>
+      </section>
+
+      <section class="showcase">
+        <div class="section-head">
+          <p class="eyebrow">视觉化文档</p>
+          <h2>运维和控制面板展示</h2>
+        </div>
+        <div class="showcase-grid">
+          <figure class="shot">
+            <img src="./assets/banner.svg" alt="Vertical Agent Forge banner" />
+            <figcaption>产品 banner</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/console-panels.svg" alt="Console and task panels" />
+            <figcaption>控制面说明</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/screenshots/landing-page.png" alt="Landing page screenshot" />
+            <figcaption>自动生成的首页截图</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/screenshots/demo-console.png" alt="Demo console screenshot" />
+            <figcaption>自动生成的 demo 截图</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="cli" id="cli">
+        <div class="section-head">
+          <p class="eyebrow">CLI 生命周期</p>
+          <h2>安装、激活、检查、卸载</h2>
+        </div>
+        <div class="code-grid">
+          <pre><code>node ./bin/vertical-agent-forge.mjs install</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs activate</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs doctor</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs uninstall</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

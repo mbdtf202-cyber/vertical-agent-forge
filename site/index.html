@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Agent Forge</title>
+    <meta
+      name="description"
+      content="Production-grade self-improvement control plane for OpenClaw vertical agents."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="theme-home">
+    <header class="topbar">
+      <div class="brand">Vertical Agent Forge</div>
+      <nav class="topnav">
+        <a href="#product">Product</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#cli">CLI</a>
+        <a href="./zh-CN.html">中文</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="product">
+        <div class="hero-copy">
+          <p class="eyebrow">Production Toolkit For OpenClaw</p>
+          <h1>Run a vertical agent like a product, not a prompt.</h1>
+          <p class="lede">
+            Vertical Agent Forge adds a durable improvement loop around your
+            OpenClaw deployment with bounded role agents, release gates,
+            artifact contracts, and hot-plug installation.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/releases/latest"
+              >Download Release</a
+            >
+            <a class="button secondary" href="https://github.com/mbdtf202-cyber/vertical-agent-forge"
+              >View Repository</a
+            >
+          </div>
+          <ul class="mini-specs">
+            <li>Hot plug into an existing OpenClaw home</li>
+            <li>Worker, Critic, Adversary, Promoter, Archivist</li>
+            <li>Durable task and wake orchestration</li>
+          </ul>
+        </div>
+        <div class="hero-panel">
+          <div class="glass">
+            <div class="glass-head">
+              <span class="dot red"></span>
+              <span class="dot gold"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="hero-metric">
+              <span>app-main</span>
+              <strong>User Delivery</strong>
+            </div>
+            <div class="hero-metric">
+              <span>app-forge</span>
+              <strong>Continuous Improvement</strong>
+            </div>
+            <div class="hero-metric">
+              <span>release gate</span>
+              <strong>Evidence Before Promotion</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel">
+          <h2>Purpose-built roles</h2>
+          <p>
+            Split user delivery from quality control. Keep one runtime focused
+            on users and another on improvement.
+          </p>
+          <ul>
+            <li><code>app-main</code> handles the customer conversation</li>
+            <li><code>app-forge</code> owns the loop</li>
+            <li>Subagents stay bounded and accountable</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>Durable orchestration</h2>
+          <p>
+            Use the OpenClaw runtime you already have: <code>task</code>,
+            <code>continuous-worker</code>, wakes, and subagents.
+          </p>
+          <ul>
+            <li>Progress persists across runs</li>
+            <li>Wake schedules survive beyond one chat turn</li>
+            <li>Artifacts stay in files, not only in transcripts</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>Release discipline</h2>
+          <p>
+            Every change passes through proposal, critique, adversarial review,
+            and promotion.
+          </p>
+          <ul>
+            <li>Candidate artifacts</li>
+            <li>Scorecards and attack reports</li>
+            <li>Decision and distillation records</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="workflow" id="workflow">
+        <div class="section-head">
+          <p class="eyebrow">Workflow</p>
+          <h2>From user traffic to durable lessons</h2>
+        </div>
+        <div class="flow-row">
+          <div class="flow-card">User Traffic</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-card">app-main</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-card">forge inbox</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-card accent">app-forge</div>
+        </div>
+        <div class="flow-row secondary">
+          <div class="flow-card slim">Worker</div>
+          <div class="flow-card slim">Critic</div>
+          <div class="flow-card slim">Adversary</div>
+          <div class="flow-card slim">Promoter</div>
+          <div class="flow-card slim">Archivist</div>
+        </div>
+        <div class="artifact-stack">
+          <div class="artifact">candidate.json</div>
+          <div class="artifact">critic.json</div>
+          <div class="artifact">adversary.json</div>
+          <div class="artifact">decision.json</div>
+          <div class="artifact">distill.json</div>
+        </div>
+      </section>
+
+      <section class="showcase">
+        <div class="section-head">
+          <p class="eyebrow">Visual Docs</p>
+          <h2>Operator-facing surfaces</h2>
+        </div>
+        <div class="showcase-grid">
+          <figure class="shot">
+            <img src="./assets/banner.svg" alt="Vertical Agent Forge banner" />
+            <figcaption>Product banner</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/console-panels.svg" alt="Console and task panels" />
+            <figcaption>Control surfaces</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/screenshots/landing-page.png" alt="Landing page screenshot" />
+            <figcaption>Generated landing screenshot</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./assets/screenshots/demo-console.png" alt="Demo console screenshot" />
+            <figcaption>Generated demo screenshot</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="cli" id="cli">
+        <div class="section-head">
+          <p class="eyebrow">CLI Lifecycle</p>
+          <h2>Install, activate, inspect, remove</h2>
+        </div>
+        <div class="code-grid">
+          <pre><code>node ./bin/vertical-agent-forge.mjs install</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs activate</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs doctor</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs uninstall</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

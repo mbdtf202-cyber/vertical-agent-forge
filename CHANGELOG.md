@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3
+
+### Features
+
+- Added GitHub Pages landing site with bilingual entry pages.
+- Added screenshot/demo generation script using Playwright.
+- Added SVG product visuals and richer lifecycle-focused README content.
+
 ## 0.1.2
 
 ### Features
