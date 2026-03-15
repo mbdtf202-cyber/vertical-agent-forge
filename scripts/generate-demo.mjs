@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import http from "node:http";
+import os from "node:os";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
@@ -45,9 +46,27 @@ function startServer(rootDir) {
   });
 }
 
+function resolveExecutablePath() {
+  const candidate = path.join(
+    os.homedir(),
+    "Library",
+    "Caches",
+    "ms-playwright",
+    "chromium-1208",
+    "chrome-mac-arm64",
+    "Google Chrome for Testing.app",
+    "Contents",
+    "MacOS",
+    "Google Chrome for Testing",
+  );
+  return fs.existsSync(candidate) ? candidate : undefined;
+}
+
 ensureDir(screenshotsDir);
 const { server, url } = await startServer(siteDir);
-const browser = await chromium.launch();
+const browser = await chromium.launch({
+  executablePath: resolveExecutablePath(),
+});
 const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
 
 await page.goto(`${url}/index.html`, { waitUntil: "networkidle" });

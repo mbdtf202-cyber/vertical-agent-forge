@@ -74,6 +74,12 @@ flowchart LR
 - GitHub 分发：
   - 独立仓库、独立 release workflow、中英双语 release 资产
 
+## 产品截图
+
+![Landing page screenshot](./site/assets/screenshots/landing-page.png)
+
+![Console surface screenshot](./site/assets/screenshots/demo-console.png)
+
 ## 安装
 
 ### 方案 1：clone 仓库后本地安装

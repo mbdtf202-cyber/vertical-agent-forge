@@ -76,6 +76,12 @@ flowchart LR
 - GitHub distribution:
   - standalone repo, standalone release workflow, bilingual release assets
 
+## Product Screens
+
+![Landing page screenshot](./site/assets/screenshots/landing-page.png)
+
+![Console surface screenshot](./site/assets/screenshots/demo-console.png)
+
 ## Install
 
 ### Option 1. Clone and install locally

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.6
+
+### Features
+
+- Added generated PNG screenshots to the repository for richer product presentation.
+- Updated release tooling to use the local Chromium installation path for demo capture.
+- Refined README presentation to better match the product-style site and visual assets.
+
 ## 0.1.5
 
 ### Features
