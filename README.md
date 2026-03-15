@@ -4,7 +4,7 @@
 
 Production-grade self-improvement control plane for OpenClaw vertical agents.
 
-![Vertical Agent Forge banner](./docs/assets/banner.svg)
+![Vertical Agent Forge banner](./site/assets/screenshots/banner.png)
 
 Vertical Agent Forge packages a complete improvement operating system around one
 user-facing vertical application agent. It gives OpenClaw users a hot-pluggable,
@@ -61,7 +61,7 @@ flowchart LR
   H --> D["skills / playbooks / memory / release assets"]
 ```
 
-![Control surfaces](./docs/assets/console-panels.svg)
+![Control surfaces](./site/assets/screenshots/console-panels.png)
 
 ## Product Capabilities
 
@@ -79,8 +79,6 @@ flowchart LR
 ## Product Screens
 
 ![Landing page screenshot](./site/assets/screenshots/landing-page.png)
-
-![Console surface screenshot](./site/assets/screenshots/demo-console.png)
 
 ## Install
 

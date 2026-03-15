@@ -14,42 +14,52 @@
     </linearGradient>
   </defs>
   <rect width="1600" height="900" fill="url(#bg)"/>
-  <circle cx="1280" cy="180" r="220" fill="#1D4F68" opacity="0.18"/>
-  <circle cx="250" cy="720" r="260" fill="#F4A261" opacity="0.08"/>
+  <circle cx="1295" cy="160" r="210" fill="#1D4F68" opacity="0.18"/>
+  <circle cx="250" cy="760" r="260" fill="#F4A261" opacity="0.08"/>
   <rect x="92" y="96" width="1416" height="708" rx="36" fill="url(#panel)" stroke="#3C6A80" stroke-opacity="0.4"/>
-  <rect x="126" y="132" width="520" height="44" rx="22" fill="#10212C"/>
+  <rect x="126" y="132" width="530" height="44" rx="22" fill="#10212C"/>
   <circle cx="156" cy="154" r="8" fill="#E76F51"/>
   <circle cx="182" cy="154" r="8" fill="#F4A261"/>
   <circle cx="208" cy="154" r="8" fill="#2A9D8F"/>
-  <text x="126" y="290" fill="#F5F7FA" font-family="Georgia, serif" font-size="92" font-weight="700">Vertical</text>
-  <text x="126" y="382" fill="#F5F7FA" font-family="Georgia, serif" font-size="92" font-weight="700">Agent Forge</text>
-  <text x="126" y="448" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">
-    <tspan x="126" dy="0">Production-grade self-improvement control plane</tspan>
-    <tspan x="126" dy="34">for OpenClaw vertical agents</tspan>
+
+  <text x="126" y="286" fill="#F5F7FA" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700">Vertical</text>
+  <text x="126" y="370" fill="#F5F7FA" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700">Agent Forge</text>
+  <text x="126" y="438" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="22">
+    <tspan x="126" dy="0">Production-grade self-improvement</tspan>
+    <tspan x="126" dy="30">control plane for OpenClaw</tspan>
+    <tspan x="126" dy="30">vertical agents.</tspan>
   </text>
-  <rect x="126" y="535" width="286" height="64" rx="18" fill="url(#accent)"/>
-  <text x="158" y="576" fill="#09121F" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">Hot Plug Into OpenClaw</text>
-  <rect x="428" y="535" width="256" height="64" rx="18" fill="#163447" stroke="#5C8598"/>
-  <text x="459" y="576" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">Evidence-First Release</text>
-  <rect x="890" y="178" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
-  <text x="930" y="235" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">User Delivery</text>
-  <text x="930" y="277" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">
-    <tspan x="930" dy="0">app-main solves the request and opens</tspan>
-    <tspan x="930" dy="30">cases when quality drifts.</tspan>
+
+  <rect x="126" y="536" width="294" height="62" rx="18" fill="url(#accent)"/>
+  <text x="158" y="574" fill="#09121F" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Hot Plug Into OpenClaw</text>
+  <rect x="438" y="536" width="274" height="62" rx="18" fill="#163447" stroke="#5C8598"/>
+  <text x="472" y="574" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Evidence-First Release</text>
+
+  <rect x="946" y="166" width="430" height="154" rx="26" fill="#0E2431" stroke="#46687C"/>
+  <text x="980" y="218" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">User Delivery</text>
+  <text x="980" y="260" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    <tspan x="980" dy="0">app-main handles the request,</tspan>
+    <tspan x="980" dy="28">then opens a case when</tspan>
+    <tspan x="980" dy="28">quality drifts.</tspan>
   </text>
-  <rect x="890" y="372" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
-  <text x="930" y="429" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Forge Loop</text>
-  <text x="930" y="471" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">
-    <tspan x="930" dy="0">Worker, Critic, Adversary, Promoter, Archivist</tspan>
-    <tspan x="930" dy="30">run as bounded subagents.</tspan>
+
+  <rect x="946" y="354" width="430" height="154" rx="26" fill="#0E2431" stroke="#46687C"/>
+  <text x="980" y="406" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Forge Loop</text>
+  <text x="980" y="448" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    <tspan x="980" dy="0">Worker, Critic, Adversary,</tspan>
+    <tspan x="980" dy="28">Promoter, and Archivist run</tspan>
+    <tspan x="980" dy="28">as bounded subagents.</tspan>
   </text>
-  <rect x="890" y="566" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
-  <text x="930" y="623" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Durable Assets</text>
-  <text x="930" y="665" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">
-    <tspan x="930" dy="0">Skills, playbooks, memory, release notes,</tspan>
-    <tspan x="930" dy="30">and rollback plans stay traceable.</tspan>
+
+  <rect x="946" y="542" width="430" height="154" rx="26" fill="#0E2431" stroke="#46687C"/>
+  <text x="980" y="594" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Durable Assets</text>
+  <text x="980" y="636" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    <tspan x="980" dy="0">Skills, playbooks, memory,</tspan>
+    <tspan x="980" dy="28">release notes, and rollback</tspan>
+    <tspan x="980" dy="28">plans stay traceable.</tspan>
   </text>
-  <path d="M780 270C828 270 848 270 880 270" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
-  <path d="M780 448C828 448 848 448 880 448" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
-  <path d="M780 626C828 626 848 626 880 626" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
+
+  <path d="M780 242C840 242 874 242 926 242" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
+  <path d="M780 430C840 430 874 430 926 430" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
+  <path d="M780 618C840 618 874 618 926 618" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
 </svg>

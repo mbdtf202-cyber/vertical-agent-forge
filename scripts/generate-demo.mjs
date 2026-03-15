@@ -62,6 +62,24 @@ function resolveExecutablePath() {
   return fs.existsSync(candidate) ? candidate : undefined;
 }
 
+async function screenshotSvg(page, baseUrl, fileName, viewport, outputName) {
+  await page.setViewportSize(viewport);
+  await page.goto(`${baseUrl}/assets/${fileName}`, { waitUntil: "load" });
+  await page.waitForTimeout(250);
+  await page.screenshot({
+    path: path.join(screenshotsDir, outputName),
+  });
+}
+
+async function screenshotSelector(page, baseUrl, pagePath, selector, outputName, viewport) {
+  await page.setViewportSize(viewport);
+  await page.goto(`${baseUrl}/${pagePath}`, { waitUntil: "load" });
+  await page.waitForTimeout(400);
+  await page.locator(selector).screenshot({
+    path: path.join(screenshotsDir, outputName),
+  });
+}
+
 ensureDir(screenshotsDir);
 const { server, url } = await startServer(siteDir);
 const browser = await chromium.launch({
@@ -69,37 +87,36 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
 
-await page.goto(`${url}/index.html`, { waitUntil: "networkidle" });
-await page.screenshot({
-  path: path.join(screenshotsDir, "landing-page.png"),
-  fullPage: true,
+await screenshotSvg(page, url, "banner.svg", { width: 1600, height: 900 }, "banner.png");
+await screenshotSvg(
+  page,
+  url,
+  "console-panels.svg",
+  { width: 1600, height: 980 },
+  "console-panels.png",
+);
+await screenshotSelector(page, url, "index.html", ".hero", "landing-page.png", {
+  width: 1600,
+  height: 1100,
 });
-
-await page.goto(`${url}/zh-CN.html`, { waitUntil: "networkidle" });
-await page.screenshot({
-  path: path.join(screenshotsDir, "landing-page.zh-CN.png"),
-  fullPage: true,
+await screenshotSelector(page, url, "zh-CN.html", ".hero", "landing-page.zh-CN.png", {
+  width: 1600,
+  height: 1100,
 });
-
-await page.goto(`${url}/index.html#cli`, { waitUntil: "networkidle" });
-await page.screenshot({
-  path: path.join(screenshotsDir, "demo-console.png"),
-  fullPage: true,
-});
-
-await browser.close();
-server.close();
 
 console.log(
   JSON.stringify(
     {
       generated: [
-        "docs/assets/screenshots/landing-page.png",
-        "docs/assets/screenshots/landing-page.zh-CN.png",
-        "docs/assets/screenshots/demo-console.png",
+        "site/assets/screenshots/banner.png",
+        "site/assets/screenshots/console-panels.png",
+        "site/assets/screenshots/landing-page.png",
+        "site/assets/screenshots/landing-page.zh-CN.png",
       ],
     },
     null,
     2,
   ),
 );
+
+process.exit(0);

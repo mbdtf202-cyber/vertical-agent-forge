@@ -4,7 +4,7 @@
 
 面向 OpenClaw 垂直应用 agent 的生产级自我迭代控制平面。
 
-![Vertical Agent Forge banner](./docs/assets/banner.svg)
+![Vertical Agent Forge banner](./site/assets/screenshots/banner.png)
 
 Vertical Agent Forge 不是一个“大 prompt”，而是一套完整的改进操作系统，用于给一个用户侧垂直应用 agent 增加以下能力：
 
@@ -59,7 +59,7 @@ flowchart LR
   H --> D["skills / playbooks / memory / release assets"]
 ```
 
-![Control surfaces](./docs/assets/console-panels.svg)
+![Control surfaces](./site/assets/screenshots/console-panels.png)
 
 ## 产品能力
 
@@ -76,9 +76,7 @@ flowchart LR
 
 ## 产品截图
 
-![Landing page screenshot](./site/assets/screenshots/landing-page.png)
-
-![Console surface screenshot](./site/assets/screenshots/demo-console.png)
+![Landing page screenshot](./site/assets/screenshots/landing-page.zh-CN.png)
 
 ## 安装
 

@@ -47,6 +47,8 @@ body {
 .topnav {
   display: flex;
   gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .topnav a {
@@ -102,6 +104,7 @@ main {
   display: flex;
   gap: 16px;
   margin-bottom: 28px;
+  flex-wrap: wrap;
 }
 
 .button {
@@ -180,6 +183,7 @@ main {
 .code-grid {
   display: grid;
   gap: 22px;
+  align-items: stretch;
 }
 
 .panel-grid,
@@ -209,6 +213,14 @@ main {
   background: rgba(19, 45, 61, 0.74);
 }
 
+.panel,
+.compare-card,
+.price-card,
+.shot,
+.contact-link {
+  height: 100%;
+}
+
 .compare-card.featured {
   background: linear-gradient(180deg, rgba(244, 162, 97, 0.14), rgba(16, 38, 51, 0.86));
   border-color: rgba(244, 162, 97, 0.6);
@@ -226,6 +238,20 @@ main {
 .cli,
 .section-head p {
   color: var(--muted);
+}
+
+.section-head {
+  max-width: 880px;
+}
+
+.section-head.centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-head p {
+  margin: 16px 0 0;
+  line-height: 1.7;
 }
 
 .panel ul {
@@ -290,21 +316,47 @@ main {
 
 .shot {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   padding: 18px;
   background: rgba(19, 45, 61, 0.78);
   border: 1px solid var(--line);
   border-radius: 24px;
 }
 
+.shot-wide {
+  grid-column: span 2;
+}
+
+.shot-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(181, 198, 209, 0.1);
+  background:
+    radial-gradient(circle at top right, rgba(244, 162, 97, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(16, 38, 51, 0.92), rgba(12, 27, 37, 0.98));
+  overflow: hidden;
+}
+
 .shot img {
   display: block;
   width: 100%;
+  height: 100%;
   border-radius: 16px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .shot figcaption {
-  margin-top: 14px;
   color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
 }
 
 .code-grid {
@@ -330,6 +382,9 @@ main {
 }
 
 .contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 22px;
   border-radius: 18px;
   border: 1px solid var(--line);
@@ -373,5 +428,16 @@ code {
 
   .hero {
     min-height: auto;
+  }
+
+  .section-head,
+  .section-head.centered {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .shot-wide {
+    grid-column: auto;
   }
 }
