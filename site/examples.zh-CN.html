@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Agent Forge 示例</title>
+    <meta name="description" content="Vertical Agent Forge 的领域模板与示例 profile。" />
+    <meta property="og:title" content="Vertical Agent Forge 示例" />
+    <meta property="og:description" content="Vertical Agent Forge 的领域模板与示例 profile。" />
+    <meta property="og:image" content="https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/social-card.svg" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <script>
+      window.SITE_SEARCH_INDEX = [
+        { title: "SaaS Support", url: "./examples.zh-CN.html#saas-support", body: "账单策略、退款、升级降级、计划权限。" },
+        { title: "Travel Concierge", url: "./examples.zh-CN.html#travel-concierge", body: "shortlist-first 旅行推荐和路径 tradeoff。" },
+        { title: "Research Ops", url: "./examples.zh-CN.html#research-ops", body: "证据整理、研究分诊和分析流程。" }
+      ];
+    </script>
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-mark" src="./assets/logo-mark.svg" alt="" />
+        <span>Vertical Agent Forge</span>
+      </div>
+      <nav class="topnav">
+        <a href="./zh-CN.html">首页</a>
+        <a href="./docs.zh-CN.html">文档</a>
+        <a href="./examples.zh-CN.html">示例</a>
+        <a href="./examples.html">English</a>
+      </nav>
+      <div class="search-shell">
+        <input id="site-search" type="search" placeholder="搜索示例" />
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section-head">
+        <p class="eyebrow">Examples</p>
+        <h2>可直接初始化的领域模板</h2>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel" id="saas-support">
+          <h2>SaaS Support</h2>
+          <p>账单规则、退款、升级降级和 plan eligibility。</p>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+        </article>
+        <article class="panel" id="travel-concierge">
+          <h2>Travel Concierge</h2>
+          <p>shortlist-first 旅行推荐与路线 tradeoff。</p>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain travel-concierge</code></pre>
+        </article>
+        <article class="panel" id="research-ops">
+          <h2>Research Ops</h2>
+          <p>证据整理、研究分诊和内部分析流程。</p>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain research-ops</code></pre>
+        </article>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

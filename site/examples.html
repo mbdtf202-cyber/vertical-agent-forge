@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Agent Forge Examples</title>
+    <meta name="description" content="Domain templates and example profiles for Vertical Agent Forge." />
+    <meta property="og:title" content="Vertical Agent Forge Examples" />
+    <meta property="og:description" content="Domain templates and example profiles for Vertical Agent Forge." />
+    <meta property="og:image" content="https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/social-card.svg" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <script>
+      window.SITE_SEARCH_INDEX = [
+        { title: "SaaS Support", url: "./examples.html#saas-support", body: "Billing policy, upgrades, refunds, plan eligibility." },
+        { title: "Travel Concierge", url: "./examples.html#travel-concierge", body: "Shortlist-first travel recommendation and route tradeoffs." },
+        { title: "Research Ops", url: "./examples.html#research-ops", body: "Evidence synthesis, triage, and analyst workflow." }
+      ];
+    </script>
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-mark" src="./assets/logo-mark.svg" alt="" />
+        <span>Vertical Agent Forge</span>
+      </div>
+      <nav class="topnav">
+        <a href="./index.html">Home</a>
+        <a href="./docs.html">Docs</a>
+        <a href="./examples.html">Examples</a>
+        <a href="./examples.zh-CN.html">中文</a>
+      </nav>
+      <div class="search-shell">
+        <input id="site-search" type="search" placeholder="Search examples" />
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section-head">
+        <p class="eyebrow">Examples</p>
+        <h2>Ready-made domain starting points</h2>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel" id="saas-support">
+          <h2>SaaS Support</h2>
+          <p>Billing rules, refunds, upgrades, downgrades, and plan eligibility.</p>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+        </article>
+        <article class="panel" id="travel-concierge">
+          <h2>Travel Concierge</h2>
+          <p>Shortlist-first destination planning with explicit tradeoffs.</p>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain travel-concierge</code></pre>
+        </article>
+        <article class="panel" id="research-ops">
+          <h2>Research Ops</h2>
+          <p>Evidence synthesis, triage, and internal research support flows.</p>
+          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain research-ops</code></pre>
+        </article>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

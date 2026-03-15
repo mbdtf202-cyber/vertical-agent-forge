@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Agent Forge 文档</title>
+    <meta name="description" content="Vertical Agent Forge 的架构、运维、FAQ 与发布文档。" />
+    <meta property="og:title" content="Vertical Agent Forge 文档" />
+    <meta property="og:description" content="Vertical Agent Forge 的架构、运维、FAQ 与发布文档。" />
+    <meta property="og:image" content="https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/social-card.svg" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <script>
+      window.SITE_SEARCH_INDEX = [
+        { title: "首页", url: "./zh-CN.html", body: "产品总览、工作流、生命周期命令。" },
+        { title: "示例", url: "./examples.zh-CN.html", body: "领域模板、demo profile、初始化方式。" },
+        { title: "架构", url: "https://github.com/mbdtf202-cyber/vertical-agent-forge/blob/main/docs/ARCHITECTURE.md", body: "系统拓扑、runtime 组件、设计规则。" },
+        { title: "运维", url: "https://github.com/mbdtf202-cyber/vertical-agent-forge/blob/main/docs/OPERATIONS.md", body: "部署建议、监控点与故障处理。" },
+        { title: "FAQ", url: "https://github.com/mbdtf202-cyber/vertical-agent-forge/blob/main/docs/FAQ.md", body: "常见产品问题。" },
+        { title: "发布", url: "https://github.com/mbdtf202-cyber/vertical-agent-forge/blob/main/docs/RELEASING.md", body: "标签、资产、workflow 说明。" }
+      ];
+    </script>
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-mark" src="./assets/logo-mark.svg" alt="" />
+        <span>Vertical Agent Forge</span>
+      </div>
+      <nav class="topnav">
+        <a href="./zh-CN.html">首页</a>
+        <a href="./docs.zh-CN.html">文档</a>
+        <a href="./examples.zh-CN.html">示例</a>
+        <a href="./docs.html">English</a>
+      </nav>
+      <div class="search-shell">
+        <input id="site-search" type="search" placeholder="搜索文档" />
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section-head">
+        <p class="eyebrow">文档</p>
+        <h2>生产级文档入口</h2>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel">
+          <h2>Architecture</h2>
+          <p>系统拓扑、角色拆分、runtime 期望与 durable artifact 流。</p>
+          <a class="doc-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/blob/main/docs/ARCHITECTURE.md">打开文档</a>
+        </article>
+        <article class="panel">
+          <h2>Operations</h2>
+          <p>监控、发布纪律与故障处理说明。</p>
+          <a class="doc-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/blob/main/docs/OPERATIONS.md">打开文档</a>
+        </article>
+        <article class="panel">
+          <h2>FAQ</h2>
+          <p>关于采用、晋升门禁与运行职责的常见问题。</p>
+          <a class="doc-link" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/blob/main/docs/FAQ.md">打开文档</a>
+        </article>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

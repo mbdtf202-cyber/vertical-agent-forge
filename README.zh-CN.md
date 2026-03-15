@@ -86,6 +86,13 @@ node ./bin/vertical-agent-forge.mjs install
 node ./bin/vertical-agent-forge.mjs activate
 ```
 
+### 方案 1.5：npm 发布后可直接用 `npx`
+
+```bash
+npx vertical-agent-forge install
+npx vertical-agent-forge activate
+```
+
 ### 方案 2：下载 release 包
 
 下载 release 归档并解压后执行：
@@ -159,6 +166,8 @@ node ./bin/vertical-agent-forge.mjs uninstall
   - [docs/FAQ.md](./docs/FAQ.md)
 - 更新记录：
   - [CHANGELOG.md](./CHANGELOG.md)
+- docs 站点：
+  - [GitHub Pages](https://mbdtf202-cyber.github.io/vertical-agent-forge/)
 
 ## Release 资产
 

@@ -9,7 +9,10 @@
   <rect x="150" y="344" width="280" height="16" rx="8" fill="#F4A261"/>
   <rect x="150" y="380" width="230" height="16" rx="8" fill="#2A9D8F"/>
   <rect x="150" y="416" width="320" height="16" rx="8" fill="#52788C"/>
-  <text x="150" y="468" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="21">Progress, state, wake ownership, overdue recovery.</text>
+  <text x="150" y="468" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="18">
+    <tspan x="150" dy="0">Progress, state, wake ownership,</tspan>
+    <tspan x="150" dy="26">and overdue recovery.</tspan>
+  </text>
   <rect x="588" y="224" width="420" height="280" rx="24" fill="#132B3A" stroke="#42697E"/>
   <text x="620" y="270" fill="#F7FAFC" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Review Chain</text>
   <circle cx="662" cy="336" r="18" fill="#E76F51"/>
@@ -20,14 +23,20 @@
   <text x="642" y="384" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">Worker</text>
   <text x="756" y="384" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">Critic</text>
   <text x="868" y="384" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">Adversary</text>
-  <text x="620" y="468" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="21">Bounded subagents, explicit evidence, no silent promotion.</text>
+  <text x="620" y="468" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="18">
+    <tspan x="620" dy="0">Bounded subagents, explicit evidence,</tspan>
+    <tspan x="620" dy="26">no silent promotion.</tspan>
+  </text>
   <rect x="1058" y="224" width="420" height="280" rx="24" fill="#132B3A" stroke="#42697E"/>
   <text x="1090" y="270" fill="#F7FAFC" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Release Gate</text>
   <rect x="1090" y="314" width="160" height="50" rx="14" fill="#163447" stroke="#5C8598"/>
   <text x="1132" y="346" fill="#F4F7FA" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">Promote</text>
   <rect x="1278" y="314" width="160" height="50" rx="14" fill="#401E22" stroke="#A7656E"/>
   <text x="1328" y="346" fill="#F7D4D7" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">Hold</text>
-  <text x="1090" y="468" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="21">Decision artifacts and rollback logic stay auditable.</text>
+  <text x="1090" y="468" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="18">
+    <tspan x="1090" dy="0">Decision artifacts and rollback logic</tspan>
+    <tspan x="1090" dy="26">stay auditable.</tspan>
+  </text>
   <rect x="118" y="560" width="640" height="290" rx="24" fill="#132B3A" stroke="#42697E"/>
   <text x="150" y="606" fill="#F7FAFC" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Artifact Ledger</text>
   <text x="150" y="652" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="22">candidate.json</text>
@@ -35,7 +44,10 @@
   <text x="150" y="728" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="22">adversary.json</text>
   <text x="150" y="766" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="22">decision.json</text>
   <text x="150" y="804" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="22">distill.json</text>
-  <text x="450" y="706" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="21">Every stage leaves a file. Nothing important lives only in chat.</text>
+  <text x="430" y="692" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="18">
+    <tspan x="430" dy="0">Every stage leaves a file.</tspan>
+    <tspan x="430" dy="26">Nothing important lives only in chat.</tspan>
+  </text>
   <rect x="808" y="560" width="670" height="290" rx="24" fill="#132B3A" stroke="#42697E"/>
   <text x="840" y="606" fill="#F7FAFC" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Install / Activate / Doctor / Uninstall</text>
   <rect x="840" y="650" width="130" height="48" rx="14" fill="#E76F51"/>
@@ -46,5 +58,8 @@
   <text x="1190" y="681" fill="#08131C" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">doctor</text>
   <rect x="1304" y="650" width="144" height="48" rx="14" fill="#163447" stroke="#5C8598"/>
   <text x="1333" y="681" fill="#F4F7FA" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">uninstall</text>
-  <text x="840" y="754" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="21">Designed as a standalone hot-plug product for existing OpenClaw deployments.</text>
+  <text x="840" y="754" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="18">
+    <tspan x="840" dy="0">Designed as a standalone hot-plug product</tspan>
+    <tspan x="840" dy="26">for existing OpenClaw deployments.</tspan>
+  </text>
 </svg>

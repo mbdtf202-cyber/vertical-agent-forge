@@ -88,6 +88,13 @@ node ./bin/vertical-agent-forge.mjs install
 node ./bin/vertical-agent-forge.mjs activate
 ```
 
+### Option 1.5. Use `npx` after npm publish
+
+```bash
+npx vertical-agent-forge install
+npx vertical-agent-forge activate
+```
+
 ### Option 2. Download the release bundle
 
 Use the latest release asset, extract it, then run:
@@ -161,6 +168,8 @@ node ./bin/vertical-agent-forge.mjs uninstall
   - [docs/FAQ.md](./docs/FAQ.md)
 - changelog:
   - [CHANGELOG.md](./CHANGELOG.md)
+- docs site:
+  - [GitHub Pages](https://mbdtf202-cyber.github.io/vertical-agent-forge/)
 
 ## Release Assets
 

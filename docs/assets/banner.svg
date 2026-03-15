@@ -23,20 +23,32 @@
   <circle cx="208" cy="154" r="8" fill="#2A9D8F"/>
   <text x="126" y="290" fill="#F5F7FA" font-family="Georgia, serif" font-size="92" font-weight="700">Vertical</text>
   <text x="126" y="382" fill="#F5F7FA" font-family="Georgia, serif" font-size="92" font-weight="700">Agent Forge</text>
-  <text x="126" y="448" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="28">Production-grade self-improvement control plane for OpenClaw vertical agents</text>
-  <rect x="126" y="510" width="260" height="64" rx="18" fill="url(#accent)"/>
-  <text x="165" y="551" fill="#09121F" font-family="'Trebuchet MS', sans-serif" font-size="26" font-weight="700">Hot Plug Into OpenClaw</text>
-  <rect x="402" y="510" width="216" height="64" rx="18" fill="#163447" stroke="#5C8598"/>
-  <text x="440" y="551" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="24" font-weight="700">Evidence-First Release</text>
+  <text x="126" y="448" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">
+    <tspan x="126" dy="0">Production-grade self-improvement control plane</tspan>
+    <tspan x="126" dy="34">for OpenClaw vertical agents</tspan>
+  </text>
+  <rect x="126" y="535" width="286" height="64" rx="18" fill="url(#accent)"/>
+  <text x="158" y="576" fill="#09121F" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">Hot Plug Into OpenClaw</text>
+  <rect x="428" y="535" width="256" height="64" rx="18" fill="#163447" stroke="#5C8598"/>
+  <text x="459" y="576" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="22" font-weight="700">Evidence-First Release</text>
   <rect x="890" y="178" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
   <text x="930" y="235" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">User Delivery</text>
-  <text x="930" y="283" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">app-main solves the request and opens cases when quality drifts.</text>
+  <text x="930" y="277" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">
+    <tspan x="930" dy="0">app-main solves the request and opens</tspan>
+    <tspan x="930" dy="30">cases when quality drifts.</tspan>
+  </text>
   <rect x="890" y="372" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
   <text x="930" y="429" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Forge Loop</text>
-  <text x="930" y="477" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">Worker, Critic, Adversary, Promoter, Archivist run as bounded subagents.</text>
+  <text x="930" y="471" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">
+    <tspan x="930" dy="0">Worker, Critic, Adversary, Promoter, Archivist</tspan>
+    <tspan x="930" dy="30">run as bounded subagents.</tspan>
+  </text>
   <rect x="890" y="566" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
   <text x="930" y="623" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Durable Assets</text>
-  <text x="930" y="671" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">Skills, playbooks, memory, release notes, and rollback plans stay traceable.</text>
+  <text x="930" y="665" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="20">
+    <tspan x="930" dy="0">Skills, playbooks, memory, release notes,</tspan>
+    <tspan x="930" dy="30">and rollback plans stay traceable.</tspan>
+  </text>
   <path d="M780 270C828 270 848 270 880 270" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
   <path d="M780 448C828 448 848 448 880 448" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
   <path d="M780 626C828 626 848 626 880 626" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>

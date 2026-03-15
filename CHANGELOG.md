@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.5
+
+### Features
+
+- Fixed README SVG overflow and alignment issues for GitHub rendering.
+- Added multi-page docs-site with navigation, search, and examples gallery.
+- Added logo, favicon, and social-card product assets.
+- Added npm-ready package metadata and npm publish workflow.
+
 ## 0.1.4
 
 ### Features

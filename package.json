@@ -1,11 +1,31 @@
 {
   "name": "vertical-agent-forge",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Production-grade self-improvement control plane for OpenClaw vertical agents",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbdtf202-cyber/vertical-agent-forge.git"
+  },
+  "homepage": "https://mbdtf202-cyber.github.io/vertical-agent-forge/",
+  "bugs": {
+    "url": "https://github.com/mbdtf202-cyber/vertical-agent-forge/issues"
+  },
   "type": "module",
   "bin": {
     "vertical-agent-forge": "./bin/vertical-agent-forge.mjs"
   },
+  "files": [
+    "bin/",
+    "kit/",
+    "docs/",
+    "site/",
+    "scripts/",
+    "templates/",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md"
+  ],
   "scripts": {
     "doctor": "node ./bin/vertical-agent-forge.mjs doctor",
     "install:local": "node ./bin/vertical-agent-forge.mjs install",
@@ -21,8 +41,13 @@
     "multi-agent",
     "self-improving-agent",
     "continuous-worker",
+    "hot-plug",
+    "vertical-agent",
     "toolkit"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "dependencies": {
     "json5": "2.2.3"
