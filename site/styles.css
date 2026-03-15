@@ -325,10 +325,6 @@ main {
   border-radius: 24px;
 }
 
-.shot-wide {
-  grid-column: span 2;
-}
-
 .shot-media {
   display: flex;
   align-items: center;
@@ -437,7 +433,4 @@ code {
     text-align: left;
   }
 
-  .shot-wide {
-    grid-column: auto;
-  }
 }
