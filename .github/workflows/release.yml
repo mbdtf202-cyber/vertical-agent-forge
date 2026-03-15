@@ -1,0 +1,59 @@
+name: Release Vertical Agent Forge
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install deps
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build release assets
+        env:
+          RELEASE_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_VERSION: ${{ github.ref_name }}
+        run: |
+          export RELEASE_VERSION="${RELEASE_VERSION#v}"
+          npm run package
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vertical-agent-forge
+          path: |
+            dist/vertical-agent-forge-kit.tar.gz
+            dist/vertical-agent-forge-kit.tar.gz.sha256
+            dist/vertical-agent-forge-kit.README.md
+            dist/vertical-agent-forge-kit.README.zh-CN.md
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: |
+            dist/vertical-agent-forge-kit.tar.gz
+            dist/vertical-agent-forge-kit.tar.gz.sha256
+            dist/vertical-agent-forge-kit.README.md
+            dist/vertical-agent-forge-kit.README.zh-CN.md
+          body_path: dist/vertical-agent-forge-kit.README.md
+          generate_release_notes: true

@@ -1,0 +1,10 @@
+{
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "hypothesis": "replace me",
+  "changes": ["replace me"],
+  "expectedWin": "replace me",
+  "knownRisks": ["replace me"],
+  "rollbackHint": "replace me",
+  "notes": "replace me"
+}

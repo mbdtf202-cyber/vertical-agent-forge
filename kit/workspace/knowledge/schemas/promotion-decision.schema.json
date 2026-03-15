@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Promotion Decision",
+  "type": "object",
+  "required": ["caseId", "candidateId", "verdict", "reason", "conditions"],
+  "properties": {
+    "caseId": { "type": "string" },
+    "candidateId": { "type": "string" },
+    "verdict": { "enum": ["promote", "hold", "reject", "rollback"] },
+    "reason": { "type": "string" },
+    "conditions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "requiredBeforePromote": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "blastRadius": { "type": "string" }
+  },
+  "additionalProperties": false
+}

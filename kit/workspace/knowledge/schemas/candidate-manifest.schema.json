@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate Manifest",
+  "type": "object",
+  "required": ["caseId", "candidateId", "hypothesis", "changes", "expectedWin", "knownRisks"],
+  "properties": {
+    "caseId": { "type": "string" },
+    "candidateId": { "type": "string" },
+    "hypothesis": { "type": "string" },
+    "changes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "expectedWin": { "type": "string" },
+    "knownRisks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rollbackHint": { "type": "string" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

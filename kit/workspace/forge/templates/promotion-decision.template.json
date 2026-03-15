@@ -1,0 +1,9 @@
+{
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "verdict": "hold",
+  "reason": "replace me",
+  "conditions": ["replace me"],
+  "requiredBeforePromote": ["replace me"],
+  "blastRadius": "replace me"
+}

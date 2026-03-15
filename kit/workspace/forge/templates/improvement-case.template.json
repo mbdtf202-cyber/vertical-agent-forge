@@ -1,0 +1,12 @@
+{
+  "caseId": "CASE-YYYYMMDD-001",
+  "title": "replace me",
+  "severity": "medium",
+  "source": "user",
+  "area": "answer-quality",
+  "expectedBehavior": "replace me",
+  "observedBehavior": "replace me",
+  "impact": "replace me",
+  "reproduction": ["replace me"],
+  "evidence": ["replace me"]
+}

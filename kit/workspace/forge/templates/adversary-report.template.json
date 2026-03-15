@@ -1,0 +1,14 @@
+{
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "summary": "replace me",
+  "findings": [
+    {
+      "severity": "medium",
+      "trigger": "replace me",
+      "observed": "replace me",
+      "expected": "replace me",
+      "notes": "replace me"
+    }
+  ]
+}

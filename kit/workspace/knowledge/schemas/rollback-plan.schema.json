@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rollback Plan",
+  "type": "object",
+  "required": ["caseId", "candidateId", "triggerSignals", "revertAction", "followupCaseAction"],
+  "properties": {
+    "caseId": { "type": "string" },
+    "candidateId": { "type": "string" },
+    "triggerSignals": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "revertAction": { "type": "string" },
+    "followupCaseAction": { "type": "string" },
+    "owner": { "type": "string" }
+  },
+  "additionalProperties": false
+}

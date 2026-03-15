@@ -1,0 +1,8 @@
+{
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "assetsUpdated": ["replace me"],
+  "newRegressionCases": ["replace me"],
+  "newAdversarialCases": ["replace me"],
+  "summary": "replace me"
+}

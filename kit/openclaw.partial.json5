@@ -1,0 +1,252 @@
+{
+  agents: {
+    defaults: {
+      workspace: "~/.openclaw/workspace-vertical-forge",
+      maxConcurrent: 2,
+      timeoutSeconds: 600,
+      subagents: {
+        maxConcurrent: 8,
+        maxSpawnDepth: 2,
+        maxChildrenPerAgent: 6,
+        runTimeoutSeconds: 240,
+      },
+    },
+    list: [
+      {
+        id: "app-main",
+        default: true,
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Main",
+          theme: "user-facing vertical application agent",
+        },
+        skills: ["vertical-service-core", "forge-shared-protocol", "forge-artifact-contracts"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: ["knowledge/domain", "knowledge/playbooks", "forge/memory"],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-forge",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Forge",
+          theme: "continuous improvement orchestrator",
+        },
+        skills: [
+          "continuous-worker",
+          "forge-shared-protocol",
+          "forge-artifact-contracts",
+          "forge-orchestrator",
+        ],
+        heartbeat: {
+          every: "15m",
+          target: "none",
+          ackMaxChars: 80,
+          suppressToolErrorWarnings: true,
+          lightContext: true,
+        },
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/domain",
+            "knowledge/playbooks",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/memory",
+            "forge/eval/regression",
+            "forge/eval/adversarial",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        subagents: {
+          allowAgents: [
+            "app-worker",
+            "app-critic",
+            "app-adversary",
+            "app-promoter",
+            "app-archivist",
+          ],
+        },
+        tools: {
+          allow: [
+            "read",
+            "write",
+            "edit",
+            "task",
+            "memory_search",
+            "memory_get",
+            "sessions_spawn",
+            "subagents",
+            "agents_list",
+            "sessions_list",
+            "sessions_history",
+          ],
+        },
+      },
+      {
+        id: "app-worker",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Worker",
+          theme: "candidate improvement builder",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-worker"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/domain",
+            "knowledge/playbooks",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/memory",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-critic",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Critic",
+          theme: "blind evaluator",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-critic"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/domain",
+            "knowledge/playbooks",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/eval/regression",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-adversary",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Adversary",
+          theme: "counterexample hunter",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-adversary"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/domain",
+            "knowledge/playbooks",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/eval/adversarial",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-promoter",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Promoter",
+          theme: "release gatekeeper",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-promoter"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/playbooks",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/eval/reports",
+            "forge/memory",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-archivist",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Archivist",
+          theme: "durable knowledge distiller",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-archivist"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/domain",
+            "knowledge/playbooks",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/memory",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+    ],
+  },
+  tools: {
+    sessions: {
+      visibility: "tree",
+    },
+    subagents: {
+      tools: {
+        deny: ["browser", "cron", "gateway", "message"],
+      },
+    },
+    web: {
+      search: {
+        enabled: true,
+        provider: "perplexity",
+      },
+    },
+  },
+}

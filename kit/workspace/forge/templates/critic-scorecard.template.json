@@ -1,0 +1,16 @@
+{
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "scores": {
+    "taskSuccess": 3,
+    "clarity": 3,
+    "consistency": 3,
+    "regressionRisk": 3,
+    "safetyFit": 3,
+    "maintainability": 3
+  },
+  "summary": "replace me",
+  "strongestEvidence": ["replace me"],
+  "weakestPoints": ["replace me"],
+  "shipBlockers": ["replace me"]
+}

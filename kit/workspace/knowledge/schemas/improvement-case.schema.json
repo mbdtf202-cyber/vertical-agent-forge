@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Improvement Case",
+  "type": "object",
+  "required": [
+    "caseId",
+    "title",
+    "severity",
+    "source",
+    "expectedBehavior",
+    "observedBehavior",
+    "impact"
+  ],
+  "properties": {
+    "caseId": { "type": "string" },
+    "title": { "type": "string" },
+    "severity": { "enum": ["low", "medium", "high", "critical"] },
+    "source": { "enum": ["user", "operator", "monitor", "regression", "adversary"] },
+    "area": { "type": "string" },
+    "expectedBehavior": { "type": "string" },
+    "observedBehavior": { "type": "string" },
+    "impact": { "type": "string" },
+    "reproduction": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

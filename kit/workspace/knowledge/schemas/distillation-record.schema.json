@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Distillation Record",
+  "type": "object",
+  "required": ["caseId", "candidateId", "assetsUpdated", "summary"],
+  "properties": {
+    "caseId": { "type": "string" },
+    "candidateId": { "type": "string" },
+    "assetsUpdated": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "newRegressionCases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "newAdversarialCases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "summary": { "type": "string" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Critic Scorecard",
+  "type": "object",
+  "required": ["caseId", "candidateId", "scores", "summary", "shipBlockers"],
+  "properties": {
+    "caseId": { "type": "string" },
+    "candidateId": { "type": "string" },
+    "scores": {
+      "type": "object",
+      "required": [
+        "taskSuccess",
+        "clarity",
+        "consistency",
+        "regressionRisk",
+        "safetyFit",
+        "maintainability"
+      ],
+      "properties": {
+        "taskSuccess": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "clarity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "consistency": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "regressionRisk": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "safetyFit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "maintainability": { "type": "integer", "minimum": 1, "maximum": 5 }
+      },
+      "additionalProperties": false
+    },
+    "summary": { "type": "string" },
+    "strongestEvidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "weakestPoints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "shipBlockers": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

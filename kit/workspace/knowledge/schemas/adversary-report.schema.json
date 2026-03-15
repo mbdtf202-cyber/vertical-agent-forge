@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adversary Report",
+  "type": "object",
+  "required": ["caseId", "candidateId", "summary", "findings"],
+  "properties": {
+    "caseId": { "type": "string" },
+    "candidateId": { "type": "string" },
+    "summary": { "type": "string" },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "trigger", "observed", "expected"],
+        "properties": {
+          "severity": { "enum": ["low", "medium", "high", "critical"] },
+          "trigger": { "type": "string" },
+          "observed": { "type": "string" },
+          "expected": { "type": "string" },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

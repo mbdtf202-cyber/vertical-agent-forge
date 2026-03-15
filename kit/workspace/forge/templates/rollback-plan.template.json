@@ -1,0 +1,8 @@
+{
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "triggerSignals": ["replace me"],
+  "revertAction": "replace me",
+  "followupCaseAction": "replace me",
+  "owner": "app-forge"
+}

@@ -1,0 +1,39 @@
+# Improvement Loop
+
+Default loop:
+
+1. pick one active case
+2. state one bounded hypothesis
+3. ask Worker for one candidate
+4. ask Critic for a blind scorecard
+5. ask Adversary for counterexamples
+6. ask Promoter for a shipping decision
+7. if accepted, ask Archivist to distill it
+8. update task state and arm the next wake
+
+Do not run multiple candidate hypotheses for one case in the same iteration
+unless the operator explicitly wants a comparison.
+
+## Canonical Artifact Paths
+
+For case `CASE-YYYYMMDD-001`, prefer:
+
+- active case:
+  - `forge/cases/active/CASE-YYYYMMDD-001.md`
+- candidate:
+  - `forge/candidates/CASE-YYYYMMDD-001-v1.candidate.json`
+- critic report:
+  - `forge/eval/reports/CASE-YYYYMMDD-001-v1.critic.json`
+- adversary report:
+  - `forge/eval/reports/CASE-YYYYMMDD-001-v1.adversary.json`
+- promoter decision:
+  - `forge/decisions/CASE-YYYYMMDD-001-v1.decision.json`
+- archivist distillation:
+  - `forge/releases/CASE-YYYYMMDD-001-v1.distill.json`
+- rollback:
+  - `forge/releases/CASE-YYYYMMDD-001-v1.rollback.json`
+- durable memory note:
+  - `forge/memory/CASE-YYYYMMDD-001.md`
+
+If an upstream artifact is missing, record a hold or blocker instead of making
+up an alternate path.
