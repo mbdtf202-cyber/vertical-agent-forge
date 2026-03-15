@@ -5,6 +5,22 @@
 - 版本：`__VERSION__`
 - 标签：`__TAG__`
 
+## 它是什么
+
+Vertical Agent Forge 会把一个垂直 OpenClaw 部署提升为一个可控的改进系统，包含：
+
+- 一个对外服务的用户侧 agent
+- 一个持续运行的 forge 闭环
+- 有边界的 proposal / evaluation / promotion 阶段
+- durable artifact 与 release gate
+
+## 为什么团队会用它
+
+- 不再把所有质量逻辑藏在一个巨型 prompt 里
+- 让回归问题可见
+- 让晋升决策基于证据
+- 把有效经验保留下来
+
 ## 下载
 
 - 归档：[`__ARCHIVE_FILE__`](__ARCHIVE_URL__)
@@ -19,14 +35,35 @@ npm install
 node ./bin/vertical-agent-forge.mjs install
 ```
 
+## 热插拔 / 热加载
+
+这个产品面向已经在使用 OpenClaw 的用户。
+
+安装器会：
+
+- 把 toolkit workspace 复制进你的 OpenClaw state 目录
+- 把需要的多 agent 配置合并进当前 OpenClaw 配置
+- 继承你已有的默认模型，确保 forge subagents 不漂移到不兼容 provider
+
+## 核心角色
+
+- `app-main`
+- `app-forge`
+- `app-worker`
+- `app-critic`
+- `app-adversary`
+- `app-promoter`
+- `app-archivist`
+
 ## 包含文档
 
-- 产品 README
-- 中文 README
-- 架构说明
-- 运维说明
-- FAQ
-- 变更记录
+- `README.md`
+- `README.zh-CN.md`
+- `docs/ARCHITECTURE.md`
+- `docs/OPERATIONS.md`
+- `docs/FAQ.md`
+- `docs/RELEASING.md`
+- `CHANGELOG.md`
 
 ## 本地打包
 
