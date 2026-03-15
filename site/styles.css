@@ -418,7 +418,7 @@ main {
 }
 
 .showcase-grid {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 28px;
 }
 
@@ -431,6 +431,19 @@ main {
   background: rgba(19, 45, 61, 0.78);
   border: 1px solid var(--line);
   border-radius: 24px;
+}
+
+.showcase .section-head h2 {
+  max-width: none;
+}
+
+.shot-label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
 }
 
 .shot-media {
@@ -455,12 +468,6 @@ main {
   border-radius: 16px;
   object-fit: contain;
   object-position: center;
-}
-
-.shot figcaption {
-  color: var(--muted);
-  text-align: center;
-  line-height: 1.6;
 }
 
 .code-grid {
