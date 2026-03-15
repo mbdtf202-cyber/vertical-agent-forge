@@ -20,3 +20,11 @@ You can, but then you are not using the forge as intended.
 
 It is designed for production-style operation, but you still need to provide
 your own domain rules, provider, and release governance.
+
+## What does activate do?
+
+It installs the product and then asks `app-forge` to initialize the runtime loop.
+
+## What does uninstall remove?
+
+It removes managed forge agents from OpenClaw config and cleans toolkit files.

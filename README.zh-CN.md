@@ -4,6 +4,8 @@
 
 面向 OpenClaw 垂直应用 agent 的生产级自我迭代控制平面。
 
+![Vertical Agent Forge banner](./docs/assets/banner.svg)
+
 Vertical Agent Forge 不是一个“大 prompt”，而是一套完整的改进操作系统，用于给一个用户侧垂直应用 agent 增加以下能力：
 
 - 持久化改进任务
@@ -57,6 +59,8 @@ flowchart LR
   H --> D["skills / playbooks / memory / release assets"]
 ```
 
+![Control surfaces](./docs/assets/console-panels.svg)
+
 ## 产品能力
 
 - 热插拔：
@@ -79,6 +83,7 @@ git clone https://github.com/mbdtf202-cyber/vertical-agent-forge.git
 cd vertical-agent-forge
 npm install
 node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
 ```
 
 ### 方案 2：下载 release 包
@@ -111,6 +116,24 @@ node ./bin/vertical-agent-forge.mjs install
 - 打包与 release 规范
 
 来实现可插拔集成。
+
+## CLI 生命周期
+
+```bash
+node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs doctor
+node ./bin/vertical-agent-forge.mjs uninstall
+```
+
+- `install`
+  - 安装 toolkit workspace 并合并配置
+- `activate`
+  - 执行 install，并触发初始 forge bootstrap
+- `doctor`
+  - 检查配置、workspace、toolkit 和 agents 是否就绪
+- `uninstall`
+  - 从配置中移除受管 forge agents，并清理 toolkit 文件
 
 ## 文档
 

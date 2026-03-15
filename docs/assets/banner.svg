@@ -1,0 +1,43 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09121F"/>
+      <stop offset="1" stop-color="#102C3D"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#17384C"/>
+      <stop offset="1" stop-color="#0C1C27"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F4A261"/>
+      <stop offset="1" stop-color="#E76F51"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1280" cy="180" r="220" fill="#1D4F68" opacity="0.18"/>
+  <circle cx="250" cy="720" r="260" fill="#F4A261" opacity="0.08"/>
+  <rect x="92" y="96" width="1416" height="708" rx="36" fill="url(#panel)" stroke="#3C6A80" stroke-opacity="0.4"/>
+  <rect x="126" y="132" width="520" height="44" rx="22" fill="#10212C"/>
+  <circle cx="156" cy="154" r="8" fill="#E76F51"/>
+  <circle cx="182" cy="154" r="8" fill="#F4A261"/>
+  <circle cx="208" cy="154" r="8" fill="#2A9D8F"/>
+  <text x="126" y="290" fill="#F5F7FA" font-family="Georgia, serif" font-size="92" font-weight="700">Vertical</text>
+  <text x="126" y="382" fill="#F5F7FA" font-family="Georgia, serif" font-size="92" font-weight="700">Agent Forge</text>
+  <text x="126" y="448" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="28">Production-grade self-improvement control plane for OpenClaw vertical agents</text>
+  <rect x="126" y="510" width="260" height="64" rx="18" fill="url(#accent)"/>
+  <text x="165" y="551" fill="#09121F" font-family="'Trebuchet MS', sans-serif" font-size="26" font-weight="700">Hot Plug Into OpenClaw</text>
+  <rect x="402" y="510" width="216" height="64" rx="18" fill="#163447" stroke="#5C8598"/>
+  <text x="440" y="551" fill="#E5EEF5" font-family="'Trebuchet MS', sans-serif" font-size="24" font-weight="700">Evidence-First Release</text>
+  <rect x="890" y="178" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
+  <text x="930" y="235" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">User Delivery</text>
+  <text x="930" y="283" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">app-main solves the request and opens cases when quality drifts.</text>
+  <rect x="890" y="372" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
+  <text x="930" y="429" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Forge Loop</text>
+  <text x="930" y="477" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">Worker, Critic, Adversary, Promoter, Archivist run as bounded subagents.</text>
+  <rect x="890" y="566" width="520" height="160" rx="26" fill="#0E2431" stroke="#46687C"/>
+  <text x="930" y="623" fill="#F5F7FA" font-family="'Trebuchet MS', sans-serif" font-size="28" font-weight="700">Durable Assets</text>
+  <text x="930" y="671" fill="#B7CAD5" font-family="'Trebuchet MS', sans-serif" font-size="24">Skills, playbooks, memory, release notes, and rollback plans stay traceable.</text>
+  <path d="M780 270C828 270 848 270 880 270" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
+  <path d="M780 448C828 448 848 448 880 448" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
+  <path d="M780 626C828 626 848 626 880 626" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>
+</svg>

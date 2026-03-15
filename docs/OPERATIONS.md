@@ -13,6 +13,13 @@
 - verify OpenClaw config with `openclaw config validate`
 - verify release assets with `npm run package`
 
+## CLI Lifecycle Commands
+
+- `node ./bin/vertical-agent-forge.mjs install`
+- `node ./bin/vertical-agent-forge.mjs activate`
+- `node ./bin/vertical-agent-forge.mjs doctor`
+- `node ./bin/vertical-agent-forge.mjs uninstall`
+
 ## Runtime Monitoring
 
 Watch:

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.2
+
+### Features
+
+- Added lifecycle commands for `activate` and `uninstall`.
+- Added SVG visual assets for banner and console-style documentation panels.
+- Upgraded standalone README pages with product visuals and lifecycle usage.
+- Updated release assets to surface lifecycle commands more clearly.
+
 ## 0.1.1
 
 ### Features

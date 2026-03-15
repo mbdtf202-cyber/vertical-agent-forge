@@ -4,6 +4,8 @@
 
 Production-grade self-improvement control plane for OpenClaw vertical agents.
 
+![Vertical Agent Forge banner](./docs/assets/banner.svg)
+
 Vertical Agent Forge packages a complete improvement operating system around one
 user-facing vertical application agent. It gives OpenClaw users a hot-pluggable,
 hot-loadable toolkit for:
@@ -59,6 +61,8 @@ flowchart LR
   H --> D["skills / playbooks / memory / release assets"]
 ```
 
+![Control surfaces](./docs/assets/console-panels.svg)
+
 ## Product Capabilities
 
 - Hot plug:
@@ -81,6 +85,7 @@ git clone https://github.com/mbdtf202-cyber/vertical-agent-forge.git
 cd vertical-agent-forge
 npm install
 node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
 ```
 
 ### Option 2. Download the release bundle
@@ -113,6 +118,24 @@ It works by adding:
 - role skills
 - forge playbooks
 - packaging / release conventions
+
+## CLI Lifecycle
+
+```bash
+node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs doctor
+node ./bin/vertical-agent-forge.mjs uninstall
+```
+
+- `install`
+  - installs the toolkit workspace and merges config
+- `activate`
+  - runs install and triggers the initial forge bootstrap turn
+- `doctor`
+  - reports whether config, workspace, toolkit, and agents are present
+- `uninstall`
+  - removes managed forge agents from config and cleans toolkit files
 
 ## Documentation
 

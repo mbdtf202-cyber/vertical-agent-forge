@@ -19,6 +19,7 @@ RELEASE_REPO=<owner>/<repo> RELEASE_TAG=v0.1.0 RELEASE_VERSION=0.1.0 npm run pac
 - `vertical-agent-forge-kit.tar.gz.sha256`
 - `vertical-agent-forge-kit.README.md`
 - `vertical-agent-forge-kit.README.zh-CN.md`
+- SVG visual assets inside the packaged repository
 
 ## GitHub Workflow
 

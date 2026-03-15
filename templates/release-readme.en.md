@@ -35,6 +35,7 @@ git clone https://github.com/mbdtf202-cyber/vertical-agent-forge.git
 cd vertical-agent-forge
 npm install
 node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
 ```
 
 ## Hot Plug / Hot Load
@@ -66,6 +67,15 @@ It installs by:
 - `docs/FAQ.md`
 - `docs/RELEASING.md`
 - `CHANGELOG.md`
+
+## Lifecycle Commands
+
+```bash
+node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs doctor
+node ./bin/vertical-agent-forge.mjs uninstall
+```
 
 ## Local Packaging
 

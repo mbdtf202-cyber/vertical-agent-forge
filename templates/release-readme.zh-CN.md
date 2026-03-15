@@ -33,6 +33,7 @@ git clone https://github.com/mbdtf202-cyber/vertical-agent-forge.git
 cd vertical-agent-forge
 npm install
 node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
 ```
 
 ## 热插拔 / 热加载
@@ -64,6 +65,15 @@ node ./bin/vertical-agent-forge.mjs install
 - `docs/FAQ.md`
 - `docs/RELEASING.md`
 - `CHANGELOG.md`
+
+## 生命周期命令
+
+```bash
+node ./bin/vertical-agent-forge.mjs install
+node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs doctor
+node ./bin/vertical-agent-forge.mjs uninstall
+```
 
 ## 本地打包
 

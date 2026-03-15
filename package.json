@@ -1,6 +1,6 @@
 {
   "name": "vertical-agent-forge",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Production-grade self-improvement control plane for OpenClaw vertical agents",
   "type": "module",
   "bin": {
@@ -9,6 +9,8 @@
   "scripts": {
     "doctor": "node ./bin/vertical-agent-forge.mjs doctor",
     "install:local": "node ./bin/vertical-agent-forge.mjs install",
+    "activate:local": "node ./bin/vertical-agent-forge.mjs activate",
+    "uninstall:local": "node ./bin/vertical-agent-forge.mjs uninstall",
     "package": "node ./scripts/package-release.mjs",
     "test": "node --test tests/*.test.mjs"
   },
