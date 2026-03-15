@@ -263,6 +263,7 @@ main {
   display: flex;
   gap: 14px;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 28px;
 }
@@ -296,6 +297,8 @@ main {
 .artifact-stack {
   display: flex;
   gap: 12px;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   margin-top: 30px;
 }
