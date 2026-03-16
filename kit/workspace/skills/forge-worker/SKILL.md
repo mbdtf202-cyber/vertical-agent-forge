@@ -37,3 +37,5 @@ Good candidate types:
 - if you need multiple changes, order them by dependency and still propose one
   bounded release candidate
 - do not invent alternate candidate filenames when the canonical path is known
+- if your hypothesis is blocked, say so in the manifest notes and propose the
+  next fallback route instead of pretending the candidate is ready

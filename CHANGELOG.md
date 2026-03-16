@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0
+
+### Features
+
+- Added an explicit anti-stall and route-pivot protocol across the forge
+  operating contract, playbooks, and role skills.
+- Expanded artifact contracts so cases, candidates, and promotion decisions can
+  record blockers, fallback plans, and the next route.
+- Updated product documentation to position smart stall recovery as a first-class
+  capability of Vertical Agent Forge.
+
 ## 0.2.0
 
 ### Features

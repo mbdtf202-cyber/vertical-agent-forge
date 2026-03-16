@@ -17,6 +17,12 @@ Required fields:
 - source
 - evidence
 
+Preferred extra fields:
+
+- attempted approaches
+- current blockers
+- what would count as new evidence
+
 Preferred severity meaning:
 
 - `low`

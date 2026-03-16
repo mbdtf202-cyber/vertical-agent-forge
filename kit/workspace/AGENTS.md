@@ -41,6 +41,14 @@ from:
    - regression or adversarial test addition when relevant
 6. Rejected improvements are still valuable. Archive why they failed.
 7. Keep artifacts factual and compact. Avoid vague meta commentary.
+8. If the same path is not producing new evidence, change approach instead of
+   repeating the same run shape.
+9. A live case must always be in one of these states:
+   - advancing
+   - blocked with a named blocker
+   - complete
+   - failed
+   - waiting on the next scheduled wake
 
 ## Directory Rules
 
@@ -65,6 +73,23 @@ from:
 6. spawn Promoter for a release decision
 7. if accepted, spawn Archivist
 8. update the runtime task and arm the next wake
+
+## Stall Recovery
+
+Treat a case as stalled when one or more of these is true:
+
+- the same hypothesis or tool pattern repeats without new evidence
+- two consecutive wakes end with the same blocker and no narrower next step
+- an expected upstream artifact is still missing after a bounded retry window
+- the team keeps producing motion but not a better shipping decision
+
+When stalled:
+
+1. write the blocker or failed path into the active case
+2. pick a materially different route
+3. shrink scope if needed
+4. slow the wake cadence if the next step depends on external change
+5. hold or reject the case if no credible path remains
 
 ## User-Facing Safety
 

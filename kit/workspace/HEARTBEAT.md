@@ -12,4 +12,6 @@ Only `app-forge` should act on this checklist.
 - Continue the highest-value active case using the role agents.
 - Keep progress silent unless blocked, approval-needed, milestone, or complete.
 - Never busy-poll. Use `task` state, logs, and wake scheduling.
+- If the same blocker appears twice in a row, force a route change or hold the
+  case.
 - If nothing needs attention, reply `HEARTBEAT_OK`.

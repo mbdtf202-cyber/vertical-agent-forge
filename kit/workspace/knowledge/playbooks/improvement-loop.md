@@ -11,6 +11,13 @@ Default loop:
 7. if accepted, ask Archivist to distill it
 8. update task state and arm the next wake
 
+If the loop stalls:
+
+1. classify the blocker
+2. update the active case with the failed path
+3. choose one materially different route
+4. if no credible route remains, hold or reject the case instead of looping
+
 Do not run multiple candidate hypotheses for one case in the same iteration
 unless the operator explicitly wants a comparison.
 
@@ -37,3 +44,8 @@ For case `CASE-YYYYMMDD-001`, prefer:
 
 If an upstream artifact is missing, record a hold or blocker instead of making
 up an alternate path.
+
+## Anti-Loop Rule
+
+Do not repeat the same hypothesis, same evidence request, or same role handoff
+unless you can state what changed since the previous attempt.

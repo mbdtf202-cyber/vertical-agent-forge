@@ -58,6 +58,12 @@ test("npm package includes packaged templates and supports init from an unpacked
       fs.existsSync(path.join(packageRoot, "kit", "domain-templates", "saas-support", "product.md")),
       true,
     );
+    assert.equal(
+      fs.existsSync(
+        path.join(packageRoot, "kit", "workspace", "knowledge", "playbooks", "stall-recovery.md"),
+      ),
+      true,
+    );
     assert.equal(fs.existsSync(path.join(packageRoot, "examples", "templates")), false);
 
     run("npm", ["install"], { cwd: packageRoot });

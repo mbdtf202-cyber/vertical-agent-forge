@@ -27,6 +27,14 @@
     "evidence": {
       "type": "array",
       "items": { "type": "string" }
+    },
+    "attemptedApproaches": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "currentBlockers": {
+      "type": "array",
+      "items": { "type": "string" }
     }
   },
   "additionalProperties": false

@@ -12,6 +12,7 @@
       "type": "array",
       "items": { "type": "string" }
     },
+    "nextRoute": { "type": "string" },
     "requiredBeforePromote": {
       "type": "array",
       "items": { "type": "string" }

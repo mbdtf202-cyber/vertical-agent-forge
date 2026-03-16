@@ -8,5 +8,7 @@
   "observedBehavior": "replace me",
   "impact": "replace me",
   "reproduction": ["replace me"],
-  "evidence": ["replace me"]
+  "evidence": ["replace me"],
+  "attemptedApproaches": ["replace me"],
+  "currentBlockers": ["replace me"]
 }

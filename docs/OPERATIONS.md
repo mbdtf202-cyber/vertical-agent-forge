@@ -51,3 +51,5 @@ Watch:
 - if candidate is missing, hold the case
 - if provider drift happens, pin the subagent model
 - if wake scheduling fails, check task runtime and cron storage
+- if the same blocker repeats, update the active case and choose a different
+  route before scheduling another fast wake

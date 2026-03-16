@@ -12,6 +12,7 @@ hot-loadable toolkit for:
 
 - durable improvement tasks
 - bounded multi-agent review loops
+- anti-stall supervision with explicit pivot rules
 - release gates instead of prompt drift
 - reusable artifact contracts
 - GitHub-native packaging and release automation
@@ -71,6 +72,8 @@ flowchart LR
   - merge agent config and workspace assets into the current OpenClaw home
 - Durable orchestration:
   - `continuous-worker`, `task`, `wake`, `sessions_spawn`
+- Stall recovery:
+  - named blockers, route switching, and slower wakes instead of blind retries
 - Release discipline:
   - proposal, evaluation, promotion, distillation
 - GitHub distribution:

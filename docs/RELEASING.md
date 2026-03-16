@@ -5,12 +5,12 @@
 Use standard product tags:
 
 - `v0.2.0`
-- `v0.2.1`
+- `v0.3.0`
 
 ## Local Packaging
 
 ```bash
-RELEASE_REPO=<owner>/<repo> RELEASE_TAG=v0.2.0 RELEASE_VERSION=0.2.0 npm run package
+RELEASE_REPO=<owner>/<repo> RELEASE_TAG=v0.3.0 RELEASE_VERSION=0.3.0 npm run package
 ```
 
 ## Packaging Model

@@ -25,6 +25,7 @@ Always pair it with `continuous-worker`.
 4. spawn only the role agents needed for that step
 5. checkpoint the task
 6. arm the next wake before the run ends
+7. if the case is stalled, pivot or hold it before scheduling more work
 
 ## Task Baseline
 
@@ -40,4 +41,15 @@ Keep these tasks alive:
 - do not merge decision-making into Worker output
 - do not promote a candidate without Critic and Adversary evidence
 - do not leave a task without a next wake, a blocked state, or a terminal state
+- do not rerun the same path unless you can point to new evidence or a changed
+  condition
 - if nothing matters right now, return `HEARTBEAT_OK`
+
+## Stall Recovery
+
+When progress stalls:
+
+1. classify why the case is stalled
+2. update the active case with the failed path and blocker
+3. choose one different route
+4. if no strong route exists, write a hold decision instead of looping

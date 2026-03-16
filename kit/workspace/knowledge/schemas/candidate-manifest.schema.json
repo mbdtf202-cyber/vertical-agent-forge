@@ -16,6 +16,11 @@
       "type": "array",
       "items": { "type": "string" }
     },
+    "fallbackPlan": { "type": "string" },
+    "abandonSignals": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
     "rollbackHint": { "type": "string" },
     "notes": { "type": "string" }
   },

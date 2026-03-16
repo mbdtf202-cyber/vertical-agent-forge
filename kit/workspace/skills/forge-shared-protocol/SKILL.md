@@ -14,6 +14,8 @@ Use this skill for every internal forge role.
 - one case id maps to one chain of artifacts
 - internal roles optimize for evidence, not eloquence
 - if there is no durable change, the work is not finished
+- if evidence does not improve, change the route instead of repeating the same
+  move
 
 ## Role Boundary
 
@@ -36,3 +38,8 @@ Do not absorb another role's authority unless the task explicitly says so.
 
 If evidence is missing, say what is missing.
 Do not smooth over an evidence gap with confident language.
+
+## Stall Rule
+
+If the same approach is not producing new evidence, name the blocker and make
+the next route explicit.

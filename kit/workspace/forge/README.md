@@ -26,3 +26,10 @@ Use it like this:
   - post-promotion watch notes
 - `templates/`
   - starter artifacts
+
+Every active case should make it obvious whether the forge is:
+
+- advancing
+- blocked
+- holding
+- waiting on the next wake

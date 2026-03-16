@@ -5,6 +5,8 @@
   "changes": ["replace me"],
   "expectedWin": "replace me",
   "knownRisks": ["replace me"],
+  "fallbackPlan": "replace me",
+  "abandonSignals": ["replace me"],
   "rollbackHint": "replace me",
   "notes": "replace me"
 }

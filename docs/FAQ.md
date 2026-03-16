@@ -36,3 +36,9 @@ It seeds the installed domain pack from a packaged example template.
 ## What does upgrade do?
 
 It refreshes the toolkit snapshot and re-merges the managed OpenClaw config.
+
+## How does it avoid stalled improvement loops?
+
+The forge ships explicit stall-recovery playbooks and role rules. Internal roles
+are expected to name blockers, switch routes, and slow wake cadence instead of
+retrying the same path indefinitely.

@@ -8,3 +8,4 @@ Look for:
 - new user complaints
 - safety drift
 - score drops on known cases
+- signs that a promoted change is creating hidden busy-work instead of better outcomes

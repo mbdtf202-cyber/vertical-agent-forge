@@ -4,6 +4,7 @@
   "verdict": "hold",
   "reason": "replace me",
   "conditions": ["replace me"],
+  "nextRoute": "replace me",
   "requiredBeforePromote": ["replace me"],
   "blastRadius": "replace me"
 }

@@ -7,6 +7,7 @@ Recommended reading order:
 1. `usage-order.md`
 2. `case-intake.md`
 3. `improvement-loop.md`
-4. role-specific playbooks
+4. `stall-recovery.md`
+5. role-specific playbooks
 
 Use these playbooks to keep role behavior consistent across runs.

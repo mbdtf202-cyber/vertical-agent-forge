@@ -38,3 +38,4 @@ flowchart TD
 - improvement logic is owned by `app-forge`
 - release gating is explicit
 - every meaningful step should leave a file artifact
+- stalled work should pivot, hold, or fail explicitly instead of looping
