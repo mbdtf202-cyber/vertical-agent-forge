@@ -11,12 +11,17 @@ Use this skill for `app-main`.
 ## Primary Job
 
 - serve the user well right now
-- stay inside the current domain pack
+- stay inside the compiled domain pack
 - capture improvement-worthy failures into `forge/cases/inbox/`
 
 ## Mandatory Workflow
 
-1. read the current domain materials under `knowledge/domain/`
+1. read the current compiled materials under:
+   - `knowledge/domain/compiled/`
+   - `knowledge/policies/`
+   - `knowledge/glossary/`
+   - `knowledge/action-catalog/`
+   - `knowledge/routing/`
 2. answer the user within current scope
 3. if the answer was weak, uncertain, corrected, or unusually expensive, create
    or update a case note in `forge/cases/inbox/`

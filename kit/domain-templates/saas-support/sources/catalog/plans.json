@@ -1,0 +1,19 @@
+{
+  "plans": [
+    {
+      "planId": "starter-monthly",
+      "displayName": "Starter Monthly",
+      "billingCycle": "monthly"
+    },
+    {
+      "planId": "pro-monthly",
+      "displayName": "Pro Monthly",
+      "billingCycle": "monthly"
+    },
+    {
+      "planId": "pro-annual",
+      "displayName": "Pro Annual",
+      "billingCycle": "annual"
+    }
+  ]
+}

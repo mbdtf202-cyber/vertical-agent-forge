@@ -12,6 +12,7 @@ Default gating:
 - `promote`
   - Critic positive enough
   - no unresolved high-severity adversary break
+  - rollout report passes
   - rollback plan exists
 - `hold`
   - promising but missing evidence

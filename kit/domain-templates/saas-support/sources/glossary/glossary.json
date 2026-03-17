@@ -1,0 +1,14 @@
+[
+  {
+    "term": "abuse threshold",
+    "definition": "Usage level above which manual refund review is required."
+  },
+  {
+    "term": "initial purchase",
+    "definition": "The first successful paid subscription checkout for the current customer workspace."
+  },
+  {
+    "term": "seat expansion",
+    "definition": "Increasing the number of licensed users on an existing subscription."
+  }
+]

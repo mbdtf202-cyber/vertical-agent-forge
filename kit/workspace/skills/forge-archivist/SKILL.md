@@ -15,6 +15,7 @@ Turn one accepted improvement into reusable system assets.
 Possible outputs:
 
 - updated role skill
+- updated compiled policy or glossary source
 - updated playbook
 - new or refined forge memory entry
 - new regression case

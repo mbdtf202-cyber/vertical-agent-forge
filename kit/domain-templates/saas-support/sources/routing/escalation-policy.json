@@ -1,0 +1,12 @@
+{
+  "rules": [
+    {
+      "when": "refund decision unclear because usage exceeds abuse threshold",
+      "escalateTo": "billing-ops"
+    },
+    {
+      "when": "customer requests a non-standard discount",
+      "escalateTo": "sales-ops"
+    }
+  ]
+}

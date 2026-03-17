@@ -1,0 +1,94 @@
+{
+  "id": "vertical-agent-forge-control-plane",
+  "name": "Vertical Agent Forge Control Plane",
+  "description": "Runtime control plane, validators, metrics, and connector diagnostics for Vertical Agent Forge",
+  "version": "0.3.0",
+  "uiHints": {
+    "enabled": {
+      "label": "Enable VAF Control Plane",
+      "help": "Turns on the Vertical Agent Forge runtime control plane and gateway RPC methods."
+    },
+    "tenantId": {
+      "label": "Tenant Id",
+      "help": "Logical tenant namespace used by the control-plane database.",
+      "placeholder": "default"
+    },
+    "workspaceDir": {
+      "label": "Workspace Dir",
+      "help": "Optional absolute path to the Vertical Agent Forge workspace. Leave empty to use the active agent workspace.",
+      "advanced": true,
+      "placeholder": "/abs/path/to/.openclaw/workspaces/vertical-agent-forge"
+    },
+    "fullAuto": {
+      "label": "Full Auto",
+      "help": "When enabled, the control plane enforces full-auto release semantics and rollback monitoring."
+    },
+    "killSwitch": {
+      "label": "Kill Switch",
+      "help": "Immediately blocks auto-promotion and marks the control plane degraded."
+    },
+    "refreshIntervalMs": {
+      "label": "Refresh Interval (ms)",
+      "help": "How often the control-plane service refreshes its runtime snapshot.",
+      "advanced": true
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean"
+      },
+      "tenantId": {
+        "type": "string"
+      },
+      "workspaceDir": {
+        "type": "string"
+      },
+      "fullAuto": {
+        "type": "boolean"
+      },
+      "killSwitch": {
+        "type": "boolean"
+      },
+      "refreshIntervalMs": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "connectors": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "zendesk": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "enum": ["simulate", "live"]
+              }
+            }
+          },
+          "stripe": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "enum": ["simulate", "live"]
+              }
+            }
+          },
+          "filesystem": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "enum": ["simulate", "live"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

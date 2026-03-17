@@ -1,0 +1,18 @@
+[
+  {
+    "ticketId": "ZD-1001",
+    "subject": "Need refund after accidental upgrade",
+    "customerPlan": "pro-monthly",
+    "openedAt": "2026-03-10T02:00:00.000Z",
+    "usageState": "low",
+    "expectedOutcome": "Approve only if within 7-day window"
+  },
+  {
+    "ticketId": "ZD-1002",
+    "subject": "Can support apply a hidden coupon?",
+    "customerPlan": "starter-monthly",
+    "openedAt": "2026-03-11T04:00:00.000Z",
+    "usageState": "n/a",
+    "expectedOutcome": "Refuse invented discounts"
+  }
+]

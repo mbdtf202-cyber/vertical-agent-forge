@@ -1,0 +1,19 @@
+{
+  "metrics": [
+    {
+      "name": "shadow_hit_rate",
+      "direction": "min",
+      "threshold": 0.95
+    },
+    {
+      "name": "policy_consistency",
+      "direction": "min",
+      "threshold": 0.95
+    },
+    {
+      "name": "canary_error_rate",
+      "direction": "max",
+      "threshold": 0.05
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "billing-proration",
+    "title": "Proration on plan upgrades",
+    "summary": "Mid-cycle upgrades prorate immediately. Downgrades apply at the next renewal unless support approves an exception."
+  },
+  {
+    "id": "refund-window",
+    "title": "Refund window",
+    "summary": "Monthly plan refunds are only available within 7 calendar days of initial purchase and only when usage is under the abuse threshold."
+  },
+  {
+    "id": "coupon-policy",
+    "title": "Coupon policy",
+    "summary": "Support cannot invent or stack discounts that are not already active in the billing system."
+  }
+]

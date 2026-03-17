@@ -27,6 +27,7 @@ improvement system with:
 
 - Archive: [`__ARCHIVE_FILE__`](__ARCHIVE_URL__)
 - SHA256: `__ARCHIVE_SHA256__`
+- Companion plugin: `vertical-agent-forge-control-plane.tgz`
 
 ## Quick Install
 
@@ -35,7 +36,7 @@ git clone https://github.com/mbdtf202-cyber/vertical-agent-forge.git
 cd vertical-agent-forge
 npm install
 node ./bin/vertical-agent-forge.mjs install
-node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs bootstrap --domain saas-support
 ```
 
 ## Hot Plug / Hot Load
@@ -52,10 +53,14 @@ It installs by:
 
 - `app-main`
 - `app-forge`
+- `app-domain-compiler`
 - `app-worker`
+- `app-evaluator`
 - `app-critic`
 - `app-adversary`
 - `app-promoter`
+- `app-deployer`
+- `app-observer`
 - `app-archivist`
 
 ## Included Docs
@@ -72,7 +77,7 @@ It installs by:
 
 ```bash
 node ./bin/vertical-agent-forge.mjs install
-node ./bin/vertical-agent-forge.mjs activate
+node ./bin/vertical-agent-forge.mjs bootstrap --domain saas-support
 node ./bin/vertical-agent-forge.mjs doctor
 node ./bin/vertical-agent-forge.mjs uninstall
 ```

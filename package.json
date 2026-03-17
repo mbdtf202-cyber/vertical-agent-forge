@@ -1,7 +1,7 @@
 {
   "name": "vertical-agent-forge",
   "version": "0.3.0",
-  "description": "Production-grade self-improvement control plane for OpenClaw vertical agents",
+  "description": "Vertical expert-agent factory for OpenClaw with a full control plane, validators, connectors, rollout automation, and anti-stall supervision",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mbdtf202-cyber/vertical-agent-forge.git"
@@ -16,8 +16,10 @@
   },
   "files": [
     "bin/",
+    "companion-plugin/",
     "kit/",
     "docs/",
+    "src/",
     "scripts/install.mjs",
     "CHANGELOG.md",
     "LICENSE",

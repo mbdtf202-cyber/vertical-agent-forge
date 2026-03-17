@@ -1,0 +1,9 @@
+{
+  "tenantId": "default",
+  "incidentId": "CASE-YYYYMMDD-001-v1-canary-incident",
+  "caseId": "CASE-YYYYMMDD-001",
+  "severity": "high",
+  "status": "open",
+  "trigger": "canary threshold breach",
+  "createdAt": "2026-03-17T00:00:00.000Z"
+}

@@ -5,6 +5,24 @@ import { spawnSync } from "node:child_process";
 import { isDeepStrictEqual } from "node:util";
 import { fileURLToPath } from "node:url";
 import JSON5 from "json5";
+import {
+  compileFactoryWorkspace,
+  ingestFactorySources,
+} from "../src/factory/compiler.mjs";
+import {
+  COMPANION_PLUGIN_DIRNAME,
+  COMPANION_PLUGIN_ID,
+  DEFAULT_DOMAIN_TEMPLATE,
+  DEFAULT_TENANT_ID,
+} from "../src/factory/constants.mjs";
+import {
+  connectorDoctorProduct,
+  deployFactoryCase,
+  rollbackFactoryCase,
+  runFactoryEvals,
+  statusFactoryProduct,
+  validateFactoryProduct,
+} from "../src/factory/ops.mjs";
 
 const PRODUCT_ID = "vertical-agent-forge";
 const DEFAULT_WORKSPACE_SLUG = "vertical-agent-forge";
@@ -12,6 +30,7 @@ const MANIFEST_FILE_NAME = "install-manifest.json";
 const ABSENT_SENTINEL = "__vafAbsent";
 const DEFAULT_ACTIVATE_MESSAGE =
   "Read HEARTBEAT.md, initialize any missing runtime tasks, and move the platform into continuous-worker mode.";
+const IGNORED_PACKAGED_FILE_NAMES = new Set([".DS_Store", "Thumbs.db"]);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_REPO_ROOT = path.resolve(__dirname, "..");
@@ -31,6 +50,12 @@ const ROOT_CONTRACT_FILES = new Set([
 
 const RUNTIME_DIRS = [
   "knowledge/domain",
+  "knowledge/sources",
+  "knowledge/policies",
+  "knowledge/glossary",
+  "knowledge/action-catalog",
+  "knowledge/evals",
+  "knowledge/routing",
   "forge/cases/accepted",
   "forge/cases/active",
   "forge/cases/inbox",
@@ -40,12 +65,16 @@ const RUNTIME_DIRS = [
   "forge/eval/adversarial",
   "forge/eval/regression",
   "forge/eval/reports",
+  "forge/incidents",
   "forge/memory",
   "forge/monitoring",
   "forge/releases",
 ];
 
 const MANAGED_CONFIG_PATHS = [
+  ["plugins", "enabled"],
+  ["plugins", "load", "paths"],
+  ["plugins", "entries", COMPANION_PLUGIN_ID],
   ["tools", "web"],
   ["tools", "sessions"],
   ["tools", "subagents"],
@@ -61,6 +90,7 @@ function resolveProductLayout(options = {}) {
   return {
     repoRoot,
     kitDir,
+    companionPluginDir: path.join(repoRoot, "companion-plugin"),
     kitWorkspaceDir: path.join(kitDir, "workspace"),
     kitConfigPath: path.join(kitDir, "openclaw.partial.json5"),
     domainTemplatesDir: path.join(kitDir, "domain-templates"),
@@ -77,10 +107,14 @@ function resolveConfigPath(env = process.env) {
 
 function resolveInstallPaths(env = process.env, workspaceSlug = DEFAULT_WORKSPACE_SLUG) {
   const stateDir = resolveStateDir(env);
+  const toolkitDir = path.join(stateDir, "toolkits", PRODUCT_ID);
+  const pluginLoadRoot = path.join(toolkitDir, "plugins");
   return {
     stateDir,
     configPath: resolveConfigPath(env),
-    toolkitDir: path.join(stateDir, "toolkits", PRODUCT_ID),
+    toolkitDir,
+    pluginLoadRoot,
+    pluginDir: path.join(pluginLoadRoot, COMPANION_PLUGIN_DIRNAME),
     workspaceDir: path.join(stateDir, "workspaces", workspaceSlug),
   };
 }
@@ -91,6 +125,10 @@ function ensureDir(target) {
 
 function fileExists(target) {
   return fs.existsSync(target);
+}
+
+function shouldIgnorePackagedFile(entryName) {
+  return IGNORED_PACKAGED_FILE_NAMES.has(entryName) || entryName.startsWith("._");
 }
 
 function cloneValue(value) {
@@ -160,6 +198,9 @@ function listFilesRecursive(rootDir, currentDir = rootDir) {
   const entries = fs.readdirSync(currentDir, { withFileTypes: true });
   const files = [];
   for (const entry of entries) {
+    if (shouldIgnorePackagedFile(entry.name)) {
+      continue;
+    }
     const absolutePath = path.join(currentDir, entry.name);
     if (entry.isDirectory()) {
       files.push(...listFilesRecursive(rootDir, absolutePath));
@@ -179,6 +220,16 @@ function classifyWorkspaceFile(relativePath) {
   }
   if (relativePath === "knowledge/domain/README.md") {
     return "seed";
+  }
+  if (
+    relativePath === "knowledge/sources/README.md" ||
+    relativePath === "knowledge/policies/README.md" ||
+    relativePath === "knowledge/glossary/README.md" ||
+    relativePath === "knowledge/action-catalog/README.md" ||
+    relativePath === "knowledge/evals/README.md" ||
+    relativePath === "knowledge/routing/README.md"
+  ) {
+    return "overwrite";
   }
   if (relativePath.startsWith("skills/")) {
     return "overwrite";
@@ -338,6 +389,31 @@ function replaceToolkitDirectory(sourceDir, targetDir) {
   });
 }
 
+function installCompanionPlugin(sourceDir, targetDir) {
+  if (!fileExists(sourceDir)) {
+    throw new Error(`Companion plugin source is missing: ${sourceDir}`);
+  }
+  removeIfExists(targetDir);
+  fs.cpSync(sourceDir, targetDir, {
+    recursive: true,
+    dereference: false,
+    force: true,
+    filter: (src) => {
+      const baseName = path.basename(src);
+      return ![
+        ".git",
+        "node_modules",
+        "dist",
+        ".DS_Store",
+        "tsconfig.json",
+        "vitest.config.ts",
+        "index.ts",
+        "index.test.ts",
+      ].includes(baseName);
+    },
+  });
+}
+
 function syncManagedWorkspace(kitWorkspaceDir, workspaceDir, workspacePlan, previousManifest) {
   ensureRuntimeWorkspaceDirs(workspaceDir);
 
@@ -394,7 +470,11 @@ function removeManagedAgents(existing = [], managedIds = new Set()) {
   return existing.filter((entry) => !managedIds.has(entry.id));
 }
 
-function mergeConfig(existing, incoming, workspaceDir) {
+function dedupeStrings(values = []) {
+  return [...new Set(values.filter((value) => typeof value === "string" && value.trim().length > 0))];
+}
+
+function mergeConfig(existing, incoming, workspaceDir, paths) {
   const next = {
     ...(existing ?? {}),
   };
@@ -475,6 +555,40 @@ function mergeConfig(existing, incoming, workspaceDir) {
       : entry.subagents,
   }));
   next.agents.list = upsertAgentList(existing.agents?.list ?? [], incomingAgents);
+
+  const existingPlugins = existing.plugins ?? {};
+  const existingEntries =
+    existingPlugins.entries && typeof existingPlugins.entries === "object" && !Array.isArray(existingPlugins.entries)
+      ? existingPlugins.entries
+      : {};
+  const existingLoadPaths = Array.isArray(existingPlugins.load?.paths) ? existingPlugins.load.paths : [];
+  next.plugins = {
+    ...existingPlugins,
+    enabled: true,
+    load: {
+      ...(existingPlugins.load ?? {}),
+      paths: dedupeStrings([...existingLoadPaths, paths.pluginLoadRoot]),
+    },
+    entries: {
+      ...existingEntries,
+      [COMPANION_PLUGIN_ID]: {
+        ...(existingEntries[COMPANION_PLUGIN_ID] ?? {}),
+        enabled: true,
+        config: {
+          ...((existingEntries[COMPANION_PLUGIN_ID] ?? {}).config ?? {}),
+          tenantId: DEFAULT_TENANT_ID,
+          workspaceDir,
+          fullAuto: true,
+          killSwitch: false,
+          connectors: {
+            zendesk: { mode: "simulate" },
+            stripe: { mode: "simulate" },
+            filesystem: { mode: "simulate" },
+          },
+        },
+      },
+    },
+  };
 
   return next;
 }
@@ -573,13 +687,13 @@ function buildManagedConfigChanges(existingConfig, nextConfig, partialConfig) {
   });
 }
 
-function buildLegacyFallbackManifest(partialConfig, workspaceDir, workspacePlan) {
+function buildLegacyFallbackManifest(partialConfig, paths, workspacePlan) {
   const baseline = {};
-  const installed = mergeConfig(baseline, partialConfig, workspaceDir);
+  const installed = mergeConfig(baseline, partialConfig, paths.workspaceDir, paths);
   return {
     productId: PRODUCT_ID,
     version: PACKAGE_VERSION,
-    workspaceDir,
+    workspaceDir: paths.workspaceDir,
     managedAgentIds: (partialConfig.agents?.list ?? []).map((entry) => entry.id),
     previousManagedAgents: [],
     managedConfigChanges: buildManagedConfigChanges(baseline, installed, partialConfig),
@@ -608,7 +722,14 @@ function isValidationFailure(validation) {
   return typeof validation.status === "number" && validation.status !== 0;
 }
 
-function runOpenClawCommand(args, configPath, stateDir, env, openclawBin = "openclaw") {
+function runOpenClawCommand(
+  args,
+  configPath,
+  stateDir,
+  env,
+  openclawBin = "openclaw",
+  options = {},
+) {
   const result = spawnSync(
     openclawBin,
     args,
@@ -620,6 +741,7 @@ function runOpenClawCommand(args, configPath, stateDir, env, openclawBin = "open
         OPENCLAW_STATE_DIR: stateDir,
       },
       encoding: "utf8",
+      timeout: options.timeoutMs,
     },
   );
   if (result.error && result.error.code === "ENOENT") {
@@ -627,6 +749,13 @@ function runOpenClawCommand(args, configPath, stateDir, env, openclawBin = "open
       status: null,
       stdout: "",
       stderr: `openclaw binary not found in PATH; skipped command: ${args.join(" ")}`,
+    };
+  }
+  if (result.error && result.error.code === "ETIMEDOUT") {
+    return {
+      status: null,
+      stdout: result.stdout?.trim?.() || "",
+      stderr: `openclaw command timed out; skipped command: ${args.join(" ")}`,
     };
   }
   if (result.error) {
@@ -647,6 +776,99 @@ function runOpenClawConfigValidate(configPath, stateDir, env, openclawBin) {
     env,
     openclawBin,
   );
+}
+
+function runOpenClawGatewayHealth(configPath, stateDir, env, openclawBin) {
+  return runOpenClawCommand(
+    ["gateway", "health", "--json"],
+    configPath,
+    stateDir,
+    env,
+    openclawBin,
+  );
+}
+
+function runOpenClawGatewayMethod(configPath, stateDir, env, openclawBin, method, params, options = {}) {
+  return runOpenClawCommand(
+    [
+      "gateway",
+      "call",
+      method,
+      "--json",
+      "--params",
+      JSON.stringify(params ?? {}),
+    ],
+    configPath,
+    stateDir,
+    env,
+    openclawBin,
+    options,
+  );
+}
+
+function parseJsonStdout(result) {
+  try {
+    return result.stdout ? JSON.parse(result.stdout) : null;
+  } catch {
+    return null;
+  }
+}
+
+function runCompanionPluginSnapshot(paths, env, openclawBin, params = {}, options = {}) {
+  const result = runOpenClawGatewayMethod(
+    paths.configPath,
+    paths.stateDir,
+    env,
+    openclawBin,
+    "vertical-agent-forge.snapshot",
+    params,
+    options,
+  );
+  return {
+    command: normalizeValidationResult(result),
+    payload: parseJsonStdout(result),
+  };
+}
+
+function preflightCompanionPlugin(pluginDir) {
+  const requiredFiles = [
+    "package.json",
+    "openclaw.plugin.json",
+    "index.mjs",
+    path.join("src", "runtime.mjs"),
+  ];
+  const missingFiles = requiredFiles.filter((relativePath) => !fileExists(path.join(pluginDir, relativePath)));
+  return {
+    ok: missingFiles.length === 0,
+    missingFiles,
+  };
+}
+
+function sleepMs(durationMs) {
+  if (!Number.isFinite(durationMs) || durationMs <= 0) {
+    return;
+  }
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, durationMs);
+}
+
+function waitForGatewayReady(
+  configPath,
+  stateDir,
+  env,
+  openclawBin,
+  attempts = 10,
+  intervalMs = 500,
+) {
+  let last = normalizeValidationResult(
+    runOpenClawGatewayHealth(configPath, stateDir, env, openclawBin),
+  );
+  for (let index = 1; index < attempts && last.status !== 0; index += 1) {
+    sleepMs(intervalMs);
+    last = normalizeValidationResult(
+      runOpenClawGatewayHealth(configPath, stateDir, env, openclawBin),
+    );
+  }
+  return last;
 }
 
 function restoreManagedConfig(currentConfig, manifest) {
@@ -685,7 +907,7 @@ function restoreManagedConfig(currentConfig, manifest) {
     }
   }
 
-  for (const key of ["agents", "tools", "session"]) {
+  for (const key of ["agents", "tools", "session", "plugins"]) {
     const value = nextConfig[key];
     if (value && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length === 0) {
       delete nextConfig[key];
@@ -710,6 +932,7 @@ function buildInstallManifest(existingConfig, nextConfig, partialConfig, paths, 
     workspaceSlug: path.basename(paths.workspaceDir),
     workspaceDir: paths.workspaceDir,
     toolkitDir: paths.toolkitDir,
+    pluginDir: paths.pluginDir,
     managedAgentIds,
     previousManagedAgents,
     managedConfigChanges: buildManagedConfigChanges(existingConfig, nextConfig, partialConfig),
@@ -726,7 +949,16 @@ export function installProduct(options = {}) {
   const existingConfig = readJson5File(paths.configPath, {});
   const previousManifest = readInstallManifest(paths.toolkitDir);
   const workspacePlan = buildWorkspacePlan(layout.kitWorkspaceDir);
-  const nextConfig = mergeConfig(existingConfig, partialConfig, paths.workspaceDir);
+  const pluginPreflight = preflightCompanionPlugin(layout.companionPluginDir);
+  if (!pluginPreflight.ok) {
+    return {
+      productId: PRODUCT_ID,
+      success: false,
+      error: `Companion plugin is incomplete: ${pluginPreflight.missingFiles.join(", ")}`,
+      pluginPreflight,
+    };
+  }
+  const nextConfig = mergeConfig(existingConfig, partialConfig, paths.workspaceDir, paths);
   const manifest = buildInstallManifest(
     existingConfig,
     nextConfig,
@@ -754,6 +986,7 @@ export function installProduct(options = {}) {
 
   try {
     replaceToolkitDirectory(layout.kitDir, paths.toolkitDir);
+    installCompanionPlugin(layout.companionPluginDir, paths.pluginDir);
     syncManagedWorkspace(layout.kitWorkspaceDir, paths.workspaceDir, workspacePlan, previousManifest);
     writeJson(paths.configPath, nextConfig);
     writeInstallManifest(paths.toolkitDir, manifest);
@@ -771,6 +1004,7 @@ export function installProduct(options = {}) {
         rolledBack: true,
         workspaceDir: paths.workspaceDir,
         toolkitDir: paths.toolkitDir,
+        pluginDir: paths.pluginDir,
         configPath: paths.configPath,
         backupPath,
         manifestPath: path.join(paths.toolkitDir, MANIFEST_FILE_NAME),
@@ -784,10 +1018,12 @@ export function installProduct(options = {}) {
       success: true,
       workspaceDir: paths.workspaceDir,
       toolkitDir: paths.toolkitDir,
+      pluginDir: paths.pluginDir,
       configPath: paths.configPath,
       backupPath,
       manifestPath: path.join(paths.toolkitDir, MANIFEST_FILE_NAME),
       domainTemplates: listDomainTemplates(options),
+      pluginPreflight,
       validation,
     };
   } finally {
@@ -821,25 +1057,47 @@ export function initDomainTemplate(options = {}) {
   const workspaceSlug = options.workspaceSlug || DEFAULT_WORKSPACE_SLUG;
   const paths = resolveInstallPaths(env, workspaceSlug);
   const domainDir = path.join(paths.workspaceDir, "knowledge", "domain");
+  const sourceDir = path.join(paths.workspaceDir, "knowledge", "sources");
+  const templateDomainDir = path.join(templateRoot, "domain");
+  const templateSourcesDir = path.join(templateRoot, "sources");
+
   ensureDir(domainDir);
-  fs.cpSync(templateRoot, domainDir, {
-    recursive: true,
-    dereference: false,
-    force: true,
-  });
+  ensureDir(sourceDir);
+
+  if (fileExists(templateDomainDir)) {
+    fs.cpSync(templateDomainDir, domainDir, {
+      recursive: true,
+      dereference: false,
+      force: true,
+    });
+  } else {
+    fs.cpSync(templateRoot, domainDir, {
+      recursive: true,
+      dereference: false,
+      force: true,
+    });
+  }
+  if (fileExists(templateSourcesDir)) {
+    fs.cpSync(templateSourcesDir, sourceDir, {
+      recursive: true,
+      dereference: false,
+      force: true,
+    });
+  }
 
   return {
     productId: PRODUCT_ID,
     success: true,
     domainTemplate: templateName,
     domainDir,
+    sourceDir,
     copiedFrom: templateRoot,
   };
 }
 
 export function activateProduct(options = {}) {
   const env = options.env ?? process.env;
-  const install = installProduct(options);
+  const install = options.skipInstall ? { success: true } : installProduct(options);
   if (!install.success) {
     return {
       productId: PRODUCT_ID,
@@ -851,29 +1109,111 @@ export function activateProduct(options = {}) {
 
   const workspaceSlug = options.workspaceSlug || DEFAULT_WORKSPACE_SLUG;
   const paths = resolveInstallPaths(env, workspaceSlug);
+  const strict = options.bestEffort !== true;
+  const gatewayHealth = waitForGatewayReady(
+    paths.configPath,
+    paths.stateDir,
+    env,
+    options.openclawBin,
+    options.gatewayWaitAttempts,
+    options.gatewayWaitIntervalMs,
+  );
+  if (gatewayHealth.status !== 0) {
+    if (strict) {
+      return {
+        productId: PRODUCT_ID,
+        success: false,
+        install,
+        activation: {
+          status: null,
+          stdout: gatewayHealth.stdout,
+          stderr: gatewayHealth.stderr
+            ? `gateway unavailable; strict activation failed\n${gatewayHealth.stderr}`
+            : "gateway unavailable; strict activation failed",
+        },
+      };
+    }
+    return {
+      productId: PRODUCT_ID,
+      success: true,
+      install,
+      activation: {
+        status: null,
+        stdout: gatewayHealth.stdout,
+        stderr: gatewayHealth.stderr
+          ? `gateway unavailable; skipped initial forge bootstrap turn\n${gatewayHealth.stderr}`
+          : "gateway unavailable; skipped initial forge bootstrap turn",
+      },
+    };
+  }
+
+  const pluginSnapshot = runCompanionPluginSnapshot(
+    paths,
+    env,
+    options.openclawBin,
+    { force: true },
+    { timeoutMs: options.activationTimeoutMs ?? 20_000 },
+  );
+  const localValidation = validateFactoryProduct({
+    workspaceDir: paths.workspaceDir,
+    tenantId: DEFAULT_TENANT_ID,
+    fullAuto: true,
+    killSwitch: false,
+  });
+  const connectorPreflight = connectorDoctorProduct({
+    workspaceDir: paths.workspaceDir,
+    tenantId: DEFAULT_TENANT_ID,
+    writeArtifact: true,
+  });
+  const pluginAvailable = pluginSnapshot.command.status === 0 && pluginSnapshot.payload?.available !== false;
+  if (strict && (!pluginAvailable || !localValidation.ok || !connectorPreflight.ok)) {
+    return {
+      productId: PRODUCT_ID,
+      success: false,
+      install,
+      activation: {
+        status: null,
+        stdout: pluginSnapshot.command.stdout,
+        stderr: pluginSnapshot.command.stderr || "control plane preflight failed",
+      },
+      pluginSnapshot,
+      localValidation,
+      connectorPreflight,
+    };
+  }
+
   const command = runOpenClawCommand(
     [
+      "gateway",
+      "call",
       "agent",
-      "--agent",
-      "app-forge",
-      "--message",
-      options.message || DEFAULT_ACTIVATE_MESSAGE,
+      "--json",
+      "--params",
+      JSON.stringify({
+        agentId: "app-forge",
+        message: options.message || DEFAULT_ACTIVATE_MESSAGE,
+        idempotencyKey: `vertical-agent-forge-activate-${Date.now()}`,
+      }),
     ],
     paths.configPath,
     paths.stateDir,
     env,
     options.openclawBin,
+    { timeoutMs: options.activationTimeoutMs ?? 20_000 },
   );
 
   return {
     productId: PRODUCT_ID,
-    success: true,
+    success: strict ? command.status === 0 : true,
     install,
     activation: {
       status: command.status,
       stdout: command.stdout?.trim?.() || "",
       stderr: command.stderr?.trim?.() || "",
     },
+    pluginSnapshot,
+    localValidation,
+    connectorPreflight,
   };
 }
 
@@ -887,18 +1227,22 @@ export function doctorProduct(options = {}) {
 
   const expectedAgents = new Set((partialConfig.agents?.list ?? []).map((entry) => entry.id));
   const installedAgents = new Set((currentConfig.agents?.list ?? []).map((entry) => entry.id));
+  const pluginEntry = currentConfig.plugins?.entries?.[COMPANION_PLUGIN_ID];
+  const pluginLoadPaths = Array.isArray(currentConfig.plugins?.load?.paths) ? currentConfig.plugins.load.paths : [];
 
-  return {
+  const result = {
     productId: PRODUCT_ID,
     success: true,
     configPath: paths.configPath,
     workspaceDir: paths.workspaceDir,
     toolkitDir: paths.toolkitDir,
+    pluginDir: paths.pluginDir,
     manifestPath: path.join(paths.toolkitDir, MANIFEST_FILE_NAME),
     exists: {
       config: fileExists(paths.configPath),
       workspace: fileExists(paths.workspaceDir),
       toolkit: fileExists(paths.toolkitDir),
+      plugin: fileExists(paths.pluginDir),
       manifest: fileExists(path.join(paths.toolkitDir, MANIFEST_FILE_NAME)),
     },
     agents: {
@@ -906,8 +1250,72 @@ export function doctorProduct(options = {}) {
       installed: [...installedAgents],
       missing: [...expectedAgents].filter((id) => !installedAgents.has(id)),
     },
+    plugin: {
+      id: COMPANION_PLUGIN_ID,
+      configured: Boolean(pluginEntry),
+      enabled: pluginEntry?.enabled !== false,
+      loadPaths: pluginLoadPaths,
+      presentInLoadPaths: pluginLoadPaths.includes(paths.pluginLoadRoot),
+      preflight: preflightCompanionPlugin(paths.pluginDir),
+    },
     domainTemplates: listDomainTemplates(options),
   };
+
+  if (!options.deep) {
+    return result;
+  }
+
+  const validation = normalizeValidationResult(
+    runOpenClawConfigValidate(paths.configPath, paths.stateDir, env, options.openclawBin),
+  );
+  const gatewayHealth = normalizeValidationResult(
+    runOpenClawGatewayHealth(paths.configPath, paths.stateDir, env, options.openclawBin),
+  );
+  const pluginSnapshot = gatewayHealth.status === 0
+    ? runCompanionPluginSnapshot(paths, env, options.openclawBin, { force: true })
+    : {
+        command: gatewayHealth,
+        payload: null,
+      };
+  const localValidation = fileExists(paths.workspaceDir)
+    ? validateFactoryProduct({
+        workspaceDir: paths.workspaceDir,
+        tenantId: DEFAULT_TENANT_ID,
+        fullAuto: true,
+        killSwitch: false,
+      })
+    : null;
+  const connectorPreflight = fileExists(paths.workspaceDir)
+    ? connectorDoctorProduct({
+        workspaceDir: paths.workspaceDir,
+        tenantId: DEFAULT_TENANT_ID,
+        writeArtifact: false,
+      })
+    : null;
+
+  result.deep = {
+    validation,
+    gatewayHealth,
+    pluginSnapshot,
+    localValidation,
+    connectorPreflight,
+  };
+  result.success =
+    result.exists.config &&
+    result.exists.workspace &&
+    result.exists.toolkit &&
+    result.exists.plugin &&
+    result.plugin.configured &&
+    result.plugin.presentInLoadPaths &&
+    result.plugin.preflight.ok &&
+    validation.status === 0 &&
+    gatewayHealth.status === 0 &&
+    pluginSnapshot.command.status === 0 &&
+    pluginSnapshot.payload?.available !== false &&
+    (localValidation?.ok ?? false) &&
+    (connectorPreflight?.ok ?? false);
+
+  return result;
 }
 
 export function uninstallProduct(options = {}) {
@@ -920,7 +1328,7 @@ export function uninstallProduct(options = {}) {
   const workspacePlan = buildWorkspacePlan(layout.kitWorkspaceDir);
   const manifest = readInstallManifest(paths.toolkitDir) ?? buildLegacyFallbackManifest(
     partialConfig,
-    paths.workspaceDir,
+    paths,
     workspacePlan,
   );
   const backupPath = backupFile(paths.configPath);
@@ -961,13 +1369,216 @@ export function uninstallProduct(options = {}) {
   };
 }
 
+export function ingestProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const ingested = ingestFactorySources({
+    workspaceDir: paths.workspaceDir,
+    fromPath: options.fromPath,
+    kind: options.kind,
+  });
+  return {
+    productId: PRODUCT_ID,
+    ...ingested,
+  };
+}
+
+export function compileProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  return {
+    productId: PRODUCT_ID,
+    ...compileFactoryWorkspace({
+      workspaceDir: paths.workspaceDir,
+      tenantId: DEFAULT_TENANT_ID,
+    }),
+  };
+}
+
+export function validateProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const validation = validateFactoryProduct({
+    workspaceDir: paths.workspaceDir,
+    tenantId: DEFAULT_TENANT_ID,
+    fullAuto: true,
+    killSwitch: false,
+  });
+  return {
+    productId: PRODUCT_ID,
+    success: validation.ok,
+    workspaceDir: paths.workspaceDir,
+    validation,
+  };
+}
+
+export function connectorDoctorCliProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const report = connectorDoctorProduct({
+    workspaceDir: paths.workspaceDir,
+    tenantId: DEFAULT_TENANT_ID,
+    writeArtifact: options.writeArtifact !== false,
+  });
+  return {
+    productId: PRODUCT_ID,
+    success: report.ok,
+    workspaceDir: paths.workspaceDir,
+    ...report,
+  };
+}
+
+export function statusProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const localSnapshot = statusFactoryProduct({
+    workspaceDir: paths.workspaceDir,
+    stateDir: paths.stateDir,
+    tenantId: DEFAULT_TENANT_ID,
+    fullAuto: true,
+    killSwitch: false,
+  });
+  if (!options.deep) {
+    return {
+      productId: PRODUCT_ID,
+      success: localSnapshot.summary.ok,
+      snapshot: localSnapshot,
+    };
+  }
+
+  const remoteCommand = runOpenClawGatewayMethod(
+    paths.configPath,
+    paths.stateDir,
+    env,
+    options.openclawBin,
+    "vertical-agent-forge.snapshot",
+    { force: true },
+  );
+  const remoteSnapshot = normalizeValidationResult(remoteCommand);
+  return {
+    productId: PRODUCT_ID,
+    success: localSnapshot.summary.ok && (remoteSnapshot.status === 0 || options.bestEffort === true),
+    snapshot: localSnapshot,
+    remoteSnapshot: {
+      command: remoteSnapshot,
+      payload: parseJsonStdout(remoteCommand),
+    },
+  };
+}
+
+export function runEvalsProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const result = runFactoryEvals({
+    workspaceDir: paths.workspaceDir,
+    caseId: options.caseId,
+    tenantId: DEFAULT_TENANT_ID,
+    stage: options.stage || "shadow",
+    injectBreach: options.injectBreach === true,
+    autoRollback: options.autoRollback !== false,
+  });
+  return {
+    productId: PRODUCT_ID,
+    ...result,
+  };
+}
+
+export function deployProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const result = deployFactoryCase({
+    workspaceDir: paths.workspaceDir,
+    caseId: options.caseId,
+    tenantId: DEFAULT_TENANT_ID,
+    stage: options.stage || "canary",
+    mode: options.bestEffort === true ? "best-effort" : "full-auto",
+  });
+  return {
+    productId: PRODUCT_ID,
+    ...result,
+  };
+}
+
+export function rollbackProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const result = rollbackFactoryCase({
+    workspaceDir: paths.workspaceDir,
+    caseId: options.caseId,
+    tenantId: DEFAULT_TENANT_ID,
+    reason: options.reason || "manual rollback",
+  });
+  return {
+    productId: PRODUCT_ID,
+    ...result,
+  };
+}
+
+export function bootstrapProduct(options = {}) {
+  const env = options.env ?? process.env;
+  const install = installProduct(options);
+  if (!install.success) {
+    return {
+      productId: PRODUCT_ID,
+      success: false,
+      install,
+    };
+  }
+
+  const paths = resolveInstallPaths(env, options.workspaceSlug || DEFAULT_WORKSPACE_SLUG);
+  const sourceRoot = path.join(paths.workspaceDir, "knowledge", "sources");
+  const hasSeedSources =
+    fileExists(sourceRoot) &&
+    listFilesRecursive(sourceRoot).some((relativePath) => path.basename(relativePath) !== "README.md");
+  const init = !hasSeedSources || options.forceInit === true
+    ? initDomainTemplate({
+        ...options,
+        domainTemplate: options.domainTemplate || DEFAULT_DOMAIN_TEMPLATE,
+      })
+    : null;
+  const compile = compileProduct(options);
+  const validate = validateProduct(options);
+  if (!validate.success && options.bestEffort !== true) {
+    return {
+      productId: PRODUCT_ID,
+      success: false,
+      install,
+      init,
+      compile,
+      validate,
+    };
+  }
+  const activation = activateProduct({
+    ...options,
+    skipInstall: true,
+  });
+  return {
+    productId: PRODUCT_ID,
+    success: install.success && (validate.success || options.bestEffort === true) && activation.success,
+    install,
+    init,
+    compile,
+    validate,
+    activation,
+  };
+}
+
 function printUsage() {
   console.log(`Vertical Agent Forge
 
 Usage:
   vertical-agent-forge install
-  vertical-agent-forge activate
-  vertical-agent-forge doctor
+  vertical-agent-forge activate [--best-effort]
+  vertical-agent-forge bootstrap [--domain <template>] [--best-effort]
+  vertical-agent-forge doctor [--deep]
+  vertical-agent-forge status [--deep]
+  vertical-agent-forge ingest --from <path> [--kind <kind>]
+  vertical-agent-forge compile
+  vertical-agent-forge validate
+  vertical-agent-forge connector-doctor
+  vertical-agent-forge run-evals --case <caseId> [--stage <shadow|canary|live>] [--inject-breach]
+  vertical-agent-forge deploy --case <caseId> [--stage <canary|live>]
+  vertical-agent-forge rollback --case <caseId> [--reason <text>]
   vertical-agent-forge init --domain <template>
   vertical-agent-forge upgrade
   vertical-agent-forge uninstall [--purge-workspace]
@@ -1009,8 +1620,52 @@ export async function runCli(argv) {
     emitResult(installProduct());
     return;
   }
+  if (command === "bootstrap") {
+    emitResult(bootstrapProduct({
+      domainTemplate: readOption(args, "--domain"),
+      bestEffort: hasFlag(args, "--best-effort"),
+    }));
+    return;
+  }
   if (command === "doctor") {
-    emitResult(doctorProduct());
+    emitResult(doctorProduct({
+      deep: hasFlag(args, "--deep"),
+    }));
+    return;
+  }
+  if (command === "status") {
+    emitResult(statusProduct({
+      deep: hasFlag(args, "--deep"),
+      bestEffort: hasFlag(args, "--best-effort"),
+    }));
+    return;
+  }
+  if (command === "ingest") {
+    emitResult(ingestProduct({
+      fromPath: readOption(args, "--from"),
+      kind: readOption(args, "--kind"),
+    }));
+    return;
+  }
+  if (command === "compile") {
+    emitResult(compileProduct());
+    return;
+  }
+  if (command === "validate") {
+    emitResult(validateProduct());
+    return;
+  }
+  if (command === "connector-doctor") {
+    emitResult(connectorDoctorCliProduct());
+    return;
+  }
+  if (command === "run-evals") {
+    emitResult(runEvalsProduct({
+      caseId: readOption(args, "--case"),
+      stage: readOption(args, "--stage"),
+      injectBreach: hasFlag(args, "--inject-breach"),
+      autoRollback: !hasFlag(args, "--no-auto-rollback"),
+    }));
     return;
   }
   if (command === "init") {
@@ -1024,7 +1679,24 @@ export async function runCli(argv) {
     return;
   }
   if (command === "activate") {
-    emitResult(activateProduct());
+    emitResult(activateProduct({
+      bestEffort: hasFlag(args, "--best-effort"),
+    }));
+    return;
+  }
+  if (command === "deploy") {
+    emitResult(deployProduct({
+      caseId: readOption(args, "--case"),
+      stage: readOption(args, "--stage"),
+      bestEffort: hasFlag(args, "--best-effort"),
+    }));
+    return;
+  }
+  if (command === "rollback") {
+    emitResult(rollbackProduct({
+      caseId: readOption(args, "--case"),
+      reason: readOption(args, "--reason"),
+    }));
     return;
   }
   if (command === "uninstall") {

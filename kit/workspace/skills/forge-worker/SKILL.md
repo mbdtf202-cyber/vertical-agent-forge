@@ -20,6 +20,7 @@ Good candidate types:
 - memory distillation
 - playbook update
 - template improvement
+- compiled domain or action-catalog refinement
 
 ## Mandatory Process
 

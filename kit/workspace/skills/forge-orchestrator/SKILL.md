@@ -31,6 +31,7 @@ Always pair it with `continuous-worker`.
 
 Keep these tasks alive:
 
+- `forge-domain-refresh`
 - `forge-signal-harvest`
 - `forge-active-improvement-loop`
 - `forge-post-promotion-monitor`
@@ -38,6 +39,7 @@ Keep these tasks alive:
 ## Hard Rules
 
 - do not busy-poll subagents
+- do not advance a case without required artifacts and validator success
 - do not merge decision-making into Worker output
 - do not promote a candidate without Critic and Adversary evidence
 - do not leave a task without a next wake, a blocked state, or a terminal state

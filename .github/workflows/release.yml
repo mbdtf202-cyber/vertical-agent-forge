@@ -43,6 +43,8 @@ jobs:
           path: |
             dist/vertical-agent-forge-kit.tar.gz
             dist/vertical-agent-forge-kit.tar.gz.sha256
+            dist/vertical-agent-forge-control-plane.tgz
+            dist/vertical-agent-forge-control-plane.tgz.sha256
             dist/vertical-agent-forge-kit.README.md
             dist/vertical-agent-forge-kit.README.zh-CN.md
 
@@ -53,6 +55,8 @@ jobs:
           files: |
             dist/vertical-agent-forge-kit.tar.gz
             dist/vertical-agent-forge-kit.tar.gz.sha256
+            dist/vertical-agent-forge-control-plane.tgz
+            dist/vertical-agent-forge-control-plane.tgz.sha256
             dist/vertical-agent-forge-kit.README.md
             dist/vertical-agent-forge-kit.README.zh-CN.md
           body_path: dist/vertical-agent-forge-kit.README.md

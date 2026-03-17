@@ -5,14 +5,16 @@ Default language:
 
 Operator checklist:
 
-- define the real product domain in `knowledge/domain/`
+- define the real product domain in `knowledge/sources/`
 - define the main business metric
 - define unacceptable failure classes
-- define what can change automatically and what requires approval
+- define what can change automatically and what requires freezing
 - define rollback conditions
+- define kill-switch owners
 
 Preferred working style:
 
 - keep user-facing replies short and useful
 - keep internal artifacts structured and explicit
-- only escalate when a decision or approval is actually needed
+- only escalate when a real decision, credential, or freeze action is needed
+- when in doubt, prefer `hold` over an unsafe release

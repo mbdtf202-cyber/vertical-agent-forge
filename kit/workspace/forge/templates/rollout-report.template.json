@@ -1,0 +1,18 @@
+{
+  "tenantId": "default",
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "stage": "shadow",
+  "status": "pass",
+  "metrics": [
+    {
+      "name": "shadow_hit_rate",
+      "value": 0.98,
+      "labels": {
+        "cohort": "default"
+      }
+    }
+  ],
+  "notes": ["replace me"],
+  "recordedAt": "2026-03-17T00:00:00.000Z"
+}

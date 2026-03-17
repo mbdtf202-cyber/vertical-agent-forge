@@ -4,12 +4,14 @@
 
 ### Features
 
-- Added an explicit anti-stall and route-pivot protocol across the forge
-  operating contract, playbooks, and role skills.
-- Expanded artifact contracts so cases, candidates, and promotion decisions can
-  record blockers, fallback plans, and the next route.
-- Updated product documentation to position smart stall recovery as a first-class
-  capability of Vertical Agent Forge.
+- Rebuilt Vertical Agent Forge as a two-part expert-agent factory with a companion control-plane plugin.
+- Added full factory CLI flows for bootstrap, ingest, compile, validate, connector checks, evals, deploy, status, and rollback.
+- Added strict activation, deep doctor checks, plugin wiring, and packaged companion-plugin release assets.
+- Added new factory roles, new artifact schemas/templates, incident tracking, and a SaaS Support source-pack reference vertical.
+- Added runtime validation, connector diagnostics, SQLite-backed control-plane snapshots, and automatic breach-triggered rollback flows.
+- Added an explicit anti-stall and route-pivot protocol across the forge operating contract, playbooks, and role skills.
+- Expanded artifact contracts so cases, candidates, and promotion decisions can record blockers, fallback plans, and the next route.
+- Updated product documentation to position smart stall recovery as a first-class capability of Vertical Agent Forge.
 
 ## 0.2.0
 

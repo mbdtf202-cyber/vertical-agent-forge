@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deployment Manifest",
+  "type": "object",
+  "required": ["tenantId", "caseId", "candidateId", "stage", "deployedAt", "mode"],
+  "properties": {
+    "tenantId": { "type": "string" },
+    "caseId": { "type": "string" },
+    "candidateId": { "type": "string" },
+    "stage": { "enum": ["shadow", "canary", "live", "rollback"] },
+    "deployedAt": { "type": "string" },
+    "mode": { "enum": ["full-auto", "best-effort"] }
+  },
+  "additionalProperties": false
+}

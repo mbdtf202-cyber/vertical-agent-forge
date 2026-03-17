@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Connector Health Snapshot",
+  "type": "object",
+  "required": ["tenantId", "checkedAt", "snapshots"],
+  "properties": {
+    "tenantId": { "type": "string" },
+    "checkedAt": { "type": "string" },
+    "snapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["connectorId", "mode", "status", "permissionLevel", "blastRadius", "capabilities", "details"],
+        "properties": {
+          "connectorId": { "type": "string" },
+          "tenantId": { "type": "string" },
+          "mode": { "enum": ["simulate", "live"] },
+          "status": { "enum": ["healthy", "degraded"] },
+          "permissionLevel": { "type": "string" },
+          "blastRadius": { "type": "string" },
+          "capabilities": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "checkedAt": { "type": "string" },
+          "details": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

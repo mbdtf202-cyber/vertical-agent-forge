@@ -14,6 +14,9 @@ const repo = process.env.RELEASE_REPO || "<owner>/<repo>";
 const archiveName = "vertical-agent-forge-kit.tar.gz";
 const archivePath = path.join(distDir, archiveName);
 const shaPath = `${archivePath}.sha256`;
+const companionArchiveName = "vertical-agent-forge-control-plane.tgz";
+const companionArchivePath = path.join(distDir, companionArchiveName);
+const companionShaPath = `${companionArchivePath}.sha256`;
 const readmePath = path.join(distDir, "vertical-agent-forge-kit.README.md");
 const readmeZhPath = path.join(distDir, "vertical-agent-forge-kit.README.zh-CN.md");
 
@@ -67,6 +70,26 @@ if (tar.status !== 0) {
 const sha = computeSha256(archivePath);
 fs.writeFileSync(shaPath, `${sha}  ${archiveName}\n`, "utf8");
 
+const companionPack = spawnSync(
+  "npm",
+  ["pack", "--json", "--pack-destination", distDir],
+  {
+    cwd: path.join(repoRoot, "companion-plugin"),
+    encoding: "utf8",
+  },
+);
+if (companionPack.status !== 0) {
+  throw new Error(companionPack.stderr || "failed to package companion plugin");
+}
+const [{ filename: companionPackedFile }] = JSON.parse(companionPack.stdout);
+const companionPackedPath = path.join(distDir, companionPackedFile);
+if (companionPackedPath !== companionArchivePath) {
+  fs.rmSync(companionArchivePath, { force: true });
+  fs.renameSync(companionPackedPath, companionArchivePath);
+}
+const companionSha = computeSha256(companionArchivePath);
+fs.writeFileSync(companionShaPath, `${companionSha}  ${companionArchiveName}\n`, "utf8");
+
 const archiveUrl = `https://github.com/${repo}/releases/download/${tag}/${archiveName}`;
 const releaseCommand = `RELEASE_REPO=${repo} RELEASE_TAG=${tag} RELEASE_VERSION=${version} npm run package`;
 
@@ -93,6 +116,8 @@ console.log(
     {
       archivePath,
       shaPath,
+      companionArchivePath,
+      companionShaPath,
       readmePath,
       readmeZhPath,
       archiveUrl,

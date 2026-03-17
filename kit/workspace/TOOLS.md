@@ -12,13 +12,18 @@
 - write one artifact per decision point
 - keep artifacts scoped to one case id
 - update the same case files instead of scattering duplicate notes
+- keep filenames canonical so the validator can locate them
 
 ## Delegation Discipline
 
+- Domain Compiler compiles
 - Worker builds
+- Evaluator measures
 - Critic scores
 - Adversary attacks
 - Promoter decides
+- Deployer executes release actions
+- Observer watches and escalates
 - Archivist distills
 
 Do not merge these responsibilities inside one artifact.

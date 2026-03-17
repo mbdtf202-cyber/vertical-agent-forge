@@ -1,0 +1,26 @@
+[
+  {
+    "id": "zendesk.comment-draft",
+    "name": "Draft Zendesk reply",
+    "risk": "low",
+    "connector": "zendesk"
+  },
+  {
+    "id": "zendesk.add-tag",
+    "name": "Add Zendesk tag",
+    "risk": "low",
+    "connector": "zendesk"
+  },
+  {
+    "id": "stripe.subscription-lookup",
+    "name": "Lookup subscription",
+    "risk": "low",
+    "connector": "stripe"
+  },
+  {
+    "id": "stripe.plan-lookup",
+    "name": "Lookup plan catalog",
+    "risk": "low",
+    "connector": "stripe"
+  }
+]

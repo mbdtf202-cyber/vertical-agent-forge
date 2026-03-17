@@ -1,0 +1,8 @@
+{
+  "tenantId": "default",
+  "caseId": "CASE-YYYYMMDD-001",
+  "candidateId": "CASE-YYYYMMDD-001-v1",
+  "stage": "canary",
+  "deployedAt": "2026-03-17T00:00:00.000Z",
+  "mode": "full-auto"
+}

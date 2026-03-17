@@ -2,7 +2,7 @@
 
 Case id:
 Owner task:
-Status: triage | building | evaluating | deciding | distilling | monitoring
+Status: triage | building | validating | shadow | canary | live | archived | hold | reject | rollback | incident
 Priority:
 
 Current hypothesis:

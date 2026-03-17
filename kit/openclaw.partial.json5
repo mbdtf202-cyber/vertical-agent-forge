@@ -24,7 +24,15 @@
         memorySearch: {
           enabled: true,
           sources: ["memory"],
-          extraPaths: ["knowledge/domain", "knowledge/playbooks", "forge/memory"],
+          extraPaths: [
+            "knowledge/domain",
+            "knowledge/domain/compiled",
+            "knowledge/policies",
+            "knowledge/glossary",
+            "knowledge/action-catalog",
+            "knowledge/routing",
+            "forge/memory",
+          ],
         },
         sandbox: {
           mode: "all",
@@ -59,12 +67,20 @@
           sources: ["memory"],
           extraPaths: [
             "knowledge/domain",
+            "knowledge/domain/compiled",
+            "knowledge/policies",
+            "knowledge/glossary",
+            "knowledge/action-catalog",
+            "knowledge/evals",
+            "knowledge/routing",
             "knowledge/playbooks",
             "knowledge/schemas",
             "forge/templates",
             "forge/memory",
-            "forge/eval/regression",
-            "forge/eval/adversarial",
+            "forge/eval/reports",
+            "forge/monitoring",
+            "forge/releases",
+            "forge/incidents",
           ],
         },
         sandbox: {
@@ -73,10 +89,14 @@
         },
         subagents: {
           allowAgents: [
+            "app-domain-compiler",
             "app-worker",
+            "app-evaluator",
             "app-critic",
             "app-adversary",
             "app-promoter",
+            "app-deployer",
+            "app-observer",
             "app-archivist",
           ],
         },
@@ -97,6 +117,35 @@
         },
       },
       {
+        id: "app-domain-compiler",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Domain Compiler",
+          theme: "raw business materials into compiled domain pack",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-domain-compiler"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/sources",
+            "knowledge/domain",
+            "knowledge/policies",
+            "knowledge/glossary",
+            "knowledge/action-catalog",
+            "knowledge/evals",
+            "knowledge/routing",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
         id: "app-worker",
         workspace: "~/.openclaw/workspace-vertical-forge",
         identity: {
@@ -109,10 +158,40 @@
           sources: ["memory"],
           extraPaths: [
             "knowledge/domain",
+            "knowledge/policies",
+            "knowledge/action-catalog",
             "knowledge/playbooks",
             "knowledge/schemas",
             "forge/templates",
             "forge/memory",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-evaluator",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Evaluator",
+          theme: "regression, shadow, canary, and connector evaluation runner",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-evaluator"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/evals",
+            "knowledge/routing",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/eval/reports",
+            "forge/monitoring",
           ],
         },
         sandbox: {
@@ -136,10 +215,11 @@
           sources: ["memory"],
           extraPaths: [
             "knowledge/domain",
+            "knowledge/policies",
             "knowledge/playbooks",
             "knowledge/schemas",
             "forge/templates",
-            "forge/eval/regression",
+            "forge/eval/reports",
           ],
         },
         sandbox: {
@@ -163,6 +243,7 @@
           sources: ["memory"],
           extraPaths: [
             "knowledge/domain",
+            "knowledge/policies",
             "knowledge/playbooks",
             "knowledge/schemas",
             "forge/templates",
@@ -189,11 +270,69 @@
           enabled: true,
           sources: ["memory"],
           extraPaths: [
+            "knowledge/routing",
             "knowledge/playbooks",
             "knowledge/schemas",
             "forge/templates",
             "forge/eval/reports",
+            "forge/releases",
             "forge/memory",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-deployer",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Deployer",
+          theme: "auto promotion, rollout, and rollback executor",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-deployer"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/action-catalog",
+            "knowledge/routing",
+            "knowledge/schemas",
+            "forge/templates",
+            "forge/releases",
+            "forge/monitoring",
+            "forge/incidents",
+          ],
+        },
+        sandbox: {
+          mode: "all",
+          scope: "agent",
+        },
+        tools: {
+          allow: ["read", "write", "edit", "memory_search", "memory_get"],
+        },
+      },
+      {
+        id: "app-observer",
+        workspace: "~/.openclaw/workspace-vertical-forge",
+        identity: {
+          name: "Observer",
+          theme: "post-promotion monitoring and incident aggregation",
+        },
+        skills: ["forge-shared-protocol", "forge-artifact-contracts", "forge-observer"],
+        memorySearch: {
+          enabled: true,
+          sources: ["memory"],
+          extraPaths: [
+            "knowledge/routing",
+            "knowledge/schemas",
+            "forge/monitoring",
+            "forge/incidents",
+            "forge/releases",
           ],
         },
         sandbox: {
@@ -217,10 +356,13 @@
           sources: ["memory"],
           extraPaths: [
             "knowledge/domain",
+            "knowledge/policies",
             "knowledge/playbooks",
             "knowledge/schemas",
             "forge/templates",
             "forge/memory",
+            "forge/eval/reports",
+            "forge/releases",
           ],
         },
         sandbox: {

@@ -18,6 +18,7 @@ Use this skill for `app-promoter`.
 ## Decision Inputs
 
 - candidate manifest
+- rollout report
 - critic scorecard
 - adversary report
 - current release memory when relevant
@@ -31,6 +32,7 @@ Canonical output path:
 - no verdict without explicit evidence
 - no `promote` if a high-severity break is still open
 - no `promote` if there is no rollback plan
+- no `promote` if rollout evidence is missing
 - no vague "looks good" language
 - if evidence is mixed, prefer `hold`
 - if required upstream artifacts are missing, default to `hold`
