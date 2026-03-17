@@ -97,6 +97,8 @@ flowchart LR
   Z -->|breach| B["rollback / incident"]
 ```
 
+![Vertical Agent Forge 控制面](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/console-panels.png)
+
 ## 内置状态机
 
 主路径：

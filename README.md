@@ -98,6 +98,8 @@ flowchart LR
   Z -->|breach| B["rollback / incident"]
 ```
 
+![Vertical Agent Forge control surface](https://mbdtf202-cyber.github.io/vertical-agent-forge/assets/screenshots/console-panels.png)
+
 ## Built-In State Machine
 
 Primary path:

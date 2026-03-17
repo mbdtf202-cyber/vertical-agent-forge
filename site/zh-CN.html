@@ -6,7 +6,7 @@
     <title>Vertical Agent Forge</title>
     <meta
       name="description"
-      content="面向 OpenClaw 垂直应用 agent 的生产级自我迭代控制平面。"
+      content="面向 OpenClaw 的垂直专家 Agent 工厂，包含编译后的领域资产、control plane、connectors 和 rollout 自动化。"
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -24,11 +24,12 @@
     <main>
       <section class="hero" id="product">
         <div class="hero-copy">
-          <p class="eyebrow">OpenClaw 生产级工具包</p>
-          <h1>把垂直 agent 做成产品，而不是大 prompt。</h1>
+          <p class="eyebrow">OpenClaw 垂直专家工厂</p>
+          <h1>构建、验证、发布并运营一个垂直专家 Agent。</h1>
           <p class="lede">
-            Vertical Agent Forge 为 OpenClaw 增加一个 durable improvement loop：
-            多角色 agent、release gate、artifact 合同，以及热插拔安装方式。
+            Vertical Agent Forge 2.0 把 OpenClaw 部署升级成一个完整工厂：
+            编译后的领域资产、control-plane plugin、connector diagnostics、
+            严格发布门禁，以及自动 rollback 路径。
           </p>
           <div class="hero-actions">
             <a class="button primary" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/releases/latest"
@@ -39,9 +40,9 @@
             >
           </div>
           <ul class="mini-specs">
-            <li>直接热插拔到现有 OpenClaw 环境</li>
-            <li>Worker / Critic / Adversary / Promoter / Archivist</li>
-            <li>durable task 与 wake 调度</li>
+            <li>主 kit + companion control-plane plugin</li>
+            <li>Domain Compiler / Evaluator / Deployer / Observer</li>
+            <li>严格激活、canary、incident、rollback</li>
           </ul>
         </div>
         <div class="hero-panel">
@@ -52,16 +53,16 @@
               <span class="dot green"></span>
             </div>
             <div class="hero-metric">
-              <span>app-main</span>
-              <strong>用户交付</strong>
+              <span>compiled domain pack</span>
+              <strong>结构化业务知识</strong>
             </div>
             <div class="hero-metric">
-              <span>app-forge</span>
-              <strong>持续改进</strong>
+              <span>control plane</span>
+              <strong>validation、metrics、incidents、connectors</strong>
             </div>
             <div class="hero-metric">
-              <span>release gate</span>
-              <strong>先证据，后晋升</strong>
+              <span>full auto</span>
+              <strong>先 canary，出 breach 就 rollback</strong>
             </div>
           </div>
         </div>
@@ -69,33 +70,32 @@
 
       <section class="panel-grid">
         <article class="panel">
-          <h2>角色清晰</h2>
-          <p>把用户交付和质量控制拆开，不让一个 agent 同时承担两种责任。</p>
+          <h2>工厂角色</h2>
+          <p>把交付、编译、评测、发布和监控拆开，而不是把一切都藏进一个 prompt。</p>
           <ul>
             <li><code>app-main</code> 面向用户</li>
-            <li><code>app-forge</code> 编排改进</li>
-            <li>子 agent 保持有边界、可追责</li>
+            <li><code>app-domain-compiler</code> 负责编译领域包</li>
+            <li><code>app-evaluator</code>、<code>app-deployer</code>、<code>app-observer</code> 负责闭环</li>
           </ul>
         </article>
         <article class="panel">
-          <h2>持久化编排</h2>
+          <h2>编译后的领域系统</h2>
           <p>
-            直接复用 OpenClaw 现有 runtime：<code>task</code>、
-            <code>continuous-worker</code>、wake、subagent。
+            原始业务资料会被编译成 policies、glossary、action catalog、eval assets、routing 和 metrics。
           </p>
           <ul>
-            <li>进度跨多轮持久存在</li>
-            <li>wake 不依赖单次聊天</li>
-            <li>核心证据留在文件里</li>
+            <li>业务事实留在文件里，不只留在聊天里</li>
+            <li>编译产物可测试、可回归</li>
+            <li>内置 SaaS Support 参考包</li>
           </ul>
         </article>
         <article class="panel">
-          <h2>发布纪律</h2>
-          <p>每个改动都要经过 proposal、critique、adversarial review 和 promotion。</p>
+          <h2>控制面自动化</h2>
+          <p>每个改动都要经过 validation、rollout evidence、connector checks、promotion gate 和 rollback。</p>
           <ul>
-            <li>candidate artifact</li>
-            <li>scorecard 与 attack report</li>
-            <li>decision 与 distillation record</li>
+            <li>snapshot、jobs、metrics、connectors、incidents</li>
+            <li>默认严格激活</li>
+            <li>canary-first，上线异常自动回滚</li>
           </ul>
         </article>
       </section>
@@ -125,9 +125,9 @@
           <div class="compare-card featured">
             <h3>Vertical Agent Forge</h3>
             <ul>
-              <li>durable task 与 wake runtime</li>
-              <li>有边界角色与明确门禁</li>
-              <li>可复用 artifact、memory 和 release assets</li>
+              <li>编译后的 domain pack + runtime control plane</li>
+              <li>有边界角色、明确门禁、显式 anti-stall 切路</li>
+              <li>可复用 artifact、memory、release assets 和 rollback 逻辑</li>
             </ul>
           </div>
         </div>
@@ -136,30 +136,33 @@
       <section class="workflow" id="workflow">
         <div class="section-head centered">
           <p class="eyebrow">流程</p>
-          <h2>从用户流量到 durable lesson</h2>
+          <h2>从原始资料到上线后的垂直专家能力</h2>
         </div>
         <div class="flow-row">
-          <div class="flow-card">用户流量</div>
+          <div class="flow-card">knowledge/sources</div>
           <div class="flow-arrow">→</div>
-          <div class="flow-card">app-main</div>
+          <div class="flow-card">app-domain-compiler</div>
           <div class="flow-arrow">→</div>
-          <div class="flow-card">forge inbox</div>
+          <div class="flow-card">compiled domain pack</div>
           <div class="flow-arrow">→</div>
-          <div class="flow-card accent">app-forge</div>
+          <div class="flow-card accent">app-main + app-forge</div>
         </div>
         <div class="flow-row secondary">
           <div class="flow-card slim">Worker</div>
+          <div class="flow-card slim">Evaluator</div>
           <div class="flow-card slim">Critic</div>
           <div class="flow-card slim">Adversary</div>
           <div class="flow-card slim">Promoter</div>
-          <div class="flow-card slim">Archivist</div>
+          <div class="flow-card slim">Deployer</div>
+          <div class="flow-card slim">Observer</div>
         </div>
         <div class="artifact-stack">
           <div class="artifact">candidate.json</div>
+          <div class="artifact">rollout.json</div>
           <div class="artifact">critic.json</div>
           <div class="artifact">adversary.json</div>
           <div class="artifact">decision.json</div>
-          <div class="artifact">distill.json</div>
+          <div class="artifact">incident.json</div>
         </div>
       </section>
 
@@ -192,8 +195,8 @@
         <div class="panel-grid">
           <article class="panel">
             <h2>SaaS Support</h2>
-            <p>账单策略、升级降级、退款和 plan eligibility。</p>
-            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+            <p>账单策略、退款规则、plan eligibility、ticket fixtures 和 metric thresholds。</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs bootstrap --domain saas-support</code></pre>
           </article>
           <article class="panel">
             <h2>Travel Concierge</h2>
@@ -211,16 +214,16 @@
       <section class="cli" id="cli">
         <div class="section-head centered">
           <p class="eyebrow">CLI 生命周期</p>
-          <h2>安装、激活、检查、卸载</h2>
+          <h2>Bootstrap、validate、evaluate、ship、rollback</h2>
         </div>
         <div class="code-grid">
-          <pre><code>node ./bin/vertical-agent-forge.mjs install</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs activate</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs upgrade</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs doctor</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs uninstall</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs uninstall --purge-workspace</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs bootstrap --domain saas-support</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs doctor --deep</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs validate</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs run-evals --case CASE-20260317-001 --stage canary</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs deploy --case CASE-20260317-001 --stage live</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs rollback --case CASE-20260317-001 --reason "canary breach"</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs status --deep</code></pre>
         </div>
       </section>
 
@@ -231,9 +234,9 @@
         </div>
         <div class="pricing-grid">
           <div class="price-card">
-            <h3>Toolkit</h3>
+            <h3>Factory Toolkit</h3>
             <strong>免费</strong>
-            <p>MIT 协议开源产品仓库与 release 资产。</p>
+            <p>MIT 协议开源主 kit + companion plugin release 资产。</p>
           </div>
           <div class="price-card">
             <h3>运行成本</h3>

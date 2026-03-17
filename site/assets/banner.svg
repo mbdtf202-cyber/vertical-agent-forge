@@ -25,38 +25,38 @@
   <text x="126" y="286" fill="#F5F7FA" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700">Vertical</text>
   <text x="126" y="370" fill="#F5F7FA" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700">Agent Forge</text>
   <text x="126" y="438" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="22">
-    <tspan x="126" dy="0">Production-grade self-improvement</tspan>
-    <tspan x="126" dy="30">control plane for OpenClaw</tspan>
-    <tspan x="126" dy="30">vertical agents.</tspan>
+    <tspan x="126" dy="0">Vertical expert-agent factory for</tspan>
+    <tspan x="126" dy="30">OpenClaw with compiled domains,</tspan>
+    <tspan x="126" dy="30">control plane, and rollback gates.</tspan>
   </text>
 
-  <rect x="126" y="536" width="294" height="62" rx="18" fill="url(#accent)"/>
-  <text x="158" y="574" fill="#09121F" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Hot Plug Into OpenClaw</text>
-  <rect x="438" y="536" width="274" height="62" rx="18" fill="#163447" stroke="#5C8598"/>
-  <text x="472" y="574" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Evidence-First Release</text>
+  <rect x="126" y="536" width="318" height="62" rx="18" fill="url(#accent)"/>
+  <text x="156" y="574" fill="#09121F" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Compile Domain Pack</text>
+  <rect x="462" y="536" width="306" height="62" rx="18" fill="#163447" stroke="#5C8598"/>
+  <text x="492" y="574" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Canary And Auto Rollback</text>
 
   <rect x="946" y="166" width="430" height="154" rx="26" fill="#0E2431" stroke="#46687C"/>
-  <text x="980" y="218" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">User Delivery</text>
+  <text x="980" y="218" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Compiled Domain</text>
   <text x="980" y="260" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">
-    <tspan x="980" dy="0">app-main handles the request,</tspan>
-    <tspan x="980" dy="28">then opens a case when</tspan>
-    <tspan x="980" dy="28">quality drifts.</tspan>
+    <tspan x="980" dy="0">Raw sources become policies,</tspan>
+    <tspan x="980" dy="28">glossary, actions, eval seeds,</tspan>
+    <tspan x="980" dy="28">and routing assets.</tspan>
   </text>
 
   <rect x="946" y="354" width="430" height="154" rx="26" fill="#0E2431" stroke="#46687C"/>
-  <text x="980" y="406" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Forge Loop</text>
+  <text x="980" y="406" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Control Plane</text>
   <text x="980" y="448" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">
-    <tspan x="980" dy="0">Worker, Critic, Adversary,</tspan>
-    <tspan x="980" dy="28">Promoter, and Archivist run</tspan>
-    <tspan x="980" dy="28">as bounded subagents.</tspan>
+    <tspan x="980" dy="0">Validator, connectors, jobs,</tspan>
+    <tspan x="980" dy="28">metrics, incidents, and</tspan>
+    <tspan x="980" dy="28">bounded role agents.</tspan>
   </text>
 
   <rect x="946" y="542" width="430" height="154" rx="26" fill="#0E2431" stroke="#46687C"/>
-  <text x="980" y="594" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Durable Assets</text>
+  <text x="980" y="594" fill="#F5F7FA" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Full-Auto Rollout</text>
   <text x="980" y="636" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">
-    <tspan x="980" dy="0">Skills, playbooks, memory,</tspan>
-    <tspan x="980" dy="28">release notes, and rollback</tspan>
-    <tspan x="980" dy="28">plans stay traceable.</tspan>
+    <tspan x="980" dy="0">Canary first, explicit incidents,</tspan>
+    <tspan x="980" dy="28">kill switch, and rollback</tspan>
+    <tspan x="980" dy="28">paths stay auditable.</tspan>
   </text>
 
   <path d="M780 242C840 242 874 242 926 242" stroke="#F4A261" stroke-width="4" stroke-linecap="round"/>

@@ -2,70 +2,73 @@
   <rect width="1600" height="980" fill="#08131C"/>
   <rect x="76" y="78" width="1448" height="824" rx="32" fill="#0F2330" stroke="#33596B"/>
 
-  <text x="122" y="138" fill="#F4F7FA" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">Control Surfaces</text>
-  <text x="122" y="180" fill="#9CB8C7" font-family="Arial, Helvetica, sans-serif" font-size="20">What operators and maintainers actually monitor</text>
+  <text x="122" y="138" fill="#F4F7FA" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">Factory Control Surfaces</text>
+  <text x="122" y="180" fill="#9CB8C7" font-family="Arial, Helvetica, sans-serif" font-size="20">What operators and maintainers monitor in VAF 2.0</text>
 
   <rect x="122" y="230" width="404" height="252" rx="24" fill="#132B3A" stroke="#42697E"/>
-  <text x="154" y="278" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Task Runtime</text>
+  <text x="154" y="278" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Compiled Domain</text>
   <rect x="154" y="318" width="340" height="20" rx="10" fill="#0D1D27"/>
   <rect x="154" y="356" width="260" height="14" rx="7" fill="#F4A261"/>
   <rect x="154" y="390" width="214" height="14" rx="7" fill="#2A9D8F"/>
   <rect x="154" y="424" width="292" height="14" rx="7" fill="#52788C"/>
   <text x="154" y="464" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">
-    <tspan x="154" dy="0">Progress, state, wake ownership,</tspan>
-    <tspan x="154" dy="24">and overdue recovery.</tspan>
+    <tspan x="154" dy="0">Policies, glossary, actions, evals,</tspan>
+    <tspan x="154" dy="24">routing, and source-index outputs.</tspan>
   </text>
 
   <rect x="556" y="230" width="404" height="252" rx="24" fill="#132B3A" stroke="#42697E"/>
-  <text x="588" y="278" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Review Chain</text>
+  <text x="588" y="278" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Role Chain</text>
   <circle cx="644" cy="342" r="18" fill="#E76F51"/>
-  <circle cx="758" cy="342" r="18" fill="#F4A261"/>
-  <circle cx="872" cy="342" r="18" fill="#2A9D8F"/>
+  <circle cx="720" cy="342" r="18" fill="#F4A261"/>
+  <circle cx="796" cy="342" r="18" fill="#2A9D8F"/>
+  <circle cx="872" cy="342" r="18" fill="#6D93A8"/>
   <path d="M662 342H740" stroke="#6D93A8" stroke-width="4" stroke-linecap="round"/>
-  <path d="M776 342H854" stroke="#6D93A8" stroke-width="4" stroke-linecap="round"/>
-  <text x="624" y="388" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">Worker</text>
-  <text x="736" y="388" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">Critic</text>
-  <text x="820" y="388" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="18">Adversary</text>
+  <path d="M738 342H778" stroke="#6D93A8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M814 342H854" stroke="#6D93A8" stroke-width="4" stroke-linecap="round"/>
+  <text x="604" y="388" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">Worker</text>
+  <text x="678" y="388" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">Evaluator</text>
+  <text x="770" y="388" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">Critic</text>
+  <text x="840" y="388" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">Adversary</text>
   <text x="588" y="464" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">
     <tspan x="588" dy="0">Bounded subagents, explicit evidence,</tspan>
-    <tspan x="588" dy="24">and no silent promotion.</tspan>
+    <tspan x="588" dy="24">anti-stall pivots, and no silent promotion.</tspan>
   </text>
 
   <rect x="990" y="230" width="404" height="252" rx="24" fill="#132B3A" stroke="#42697E"/>
-  <text x="1022" y="278" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Release Gate</text>
+  <text x="1022" y="278" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Control Plane</text>
   <rect x="1022" y="326" width="154" height="48" rx="14" fill="#163447" stroke="#5C8598"/>
-  <text x="1060" y="356" fill="#F4F7FA" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Promote</text>
+  <text x="1052" y="356" fill="#F4F7FA" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Snapshot</text>
   <rect x="1198" y="326" width="154" height="48" rx="14" fill="#401E22" stroke="#A7656E"/>
-  <text x="1248" y="356" fill="#F7D4D7" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Hold</text>
+  <text x="1232" y="356" fill="#F7D4D7" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Incident</text>
   <text x="1022" y="464" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">
-    <tspan x="1022" dy="0">Decision artifacts and rollback logic</tspan>
-    <tspan x="1022" dy="24">stay auditable.</tspan>
+    <tspan x="1022" dy="0">Validator, connectors, jobs, metrics,</tspan>
+    <tspan x="1022" dy="24">and rollback logic stay auditable.</tspan>
   </text>
 
   <rect x="122" y="520" width="612" height="318" rx="24" fill="#132B3A" stroke="#42697E"/>
   <text x="154" y="570" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Artifact Ledger</text>
   <text x="154" y="620" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">candidate.json</text>
-  <text x="154" y="656" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">critic.json</text>
-  <text x="154" y="692" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">adversary.json</text>
+  <text x="154" y="656" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">rollout.json</text>
+  <text x="154" y="692" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">critic.json</text>
   <text x="154" y="728" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">decision.json</text>
-  <text x="154" y="764" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">distill.json</text>
+  <text x="154" y="764" fill="#E5EEF5" font-family="Arial, Helvetica, sans-serif" font-size="20">incident.json</text>
   <text x="418" y="668" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">
     <tspan x="418" dy="0">Every stage leaves a file.</tspan>
     <tspan x="418" dy="24">Nothing important lives only in chat.</tspan>
   </text>
 
   <rect x="764" y="520" width="630" height="318" rx="24" fill="#132B3A" stroke="#42697E"/>
-  <text x="796" y="570" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Install / Activate / Doctor / Uninstall</text>
-  <rect x="796" y="626" width="126" height="46" rx="14" fill="#E76F51"/>
-  <text x="828" y="655" fill="#08131C" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">install</text>
-  <rect x="940" y="626" width="142" height="46" rx="14" fill="#F4A261"/>
-  <text x="972" y="655" fill="#08131C" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">activate</text>
-  <rect x="1100" y="626" width="128" height="46" rx="14" fill="#2A9D8F"/>
-  <text x="1134" y="655" fill="#08131C" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">doctor</text>
-  <rect x="1246" y="626" width="136" height="46" rx="14" fill="#163447" stroke="#5C8598"/>
-  <text x="1274" y="655" fill="#F4F7FA" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">uninstall</text>
+  <text x="796" y="570" fill="#F7FAFC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Bootstrap / Validate / Eval / Deploy / Rollback</text>
+  <rect x="796" y="626" width="148" height="46" rx="14" fill="#E76F51"/>
+  <text x="822" y="655" fill="#08131C" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">bootstrap</text>
+  <rect x="962" y="626" width="132" height="46" rx="14" fill="#F4A261"/>
+  <text x="990" y="655" fill="#08131C" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">validate</text>
+  <rect x="1112" y="626" width="112" height="46" rx="14" fill="#2A9D8F"/>
+  <text x="1144" y="655" fill="#08131C" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">eval</text>
+  <rect x="1242" y="626" width="136" height="46" rx="14" fill="#163447" stroke="#5C8598"/>
+  <text x="1278" y="655" fill="#F4F7FA" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">rollback</text>
   <text x="796" y="740" fill="#B7CAD5" font-family="Arial, Helvetica, sans-serif" font-size="16">
-    <tspan x="796" dy="0">Designed as a standalone hot-plug product</tspan>
+    <tspan x="796" dy="0">Strict activation plus canary-first operations</tspan>
     <tspan x="796" dy="24">for existing OpenClaw deployments.</tspan>
   </text>
 </svg>

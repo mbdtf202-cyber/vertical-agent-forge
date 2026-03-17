@@ -6,7 +6,7 @@
     <title>Vertical Agent Forge</title>
     <meta
       name="description"
-      content="Production-grade self-improvement control plane for OpenClaw vertical agents."
+      content="Vertical expert-agent factory for OpenClaw with a compiled domain pack, runtime control plane, connectors, and rollout automation."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -24,12 +24,13 @@
     <main>
       <section class="hero" id="product">
         <div class="hero-copy">
-          <p class="eyebrow">Production Toolkit For OpenClaw</p>
-          <h1>Run a vertical agent like a product, not a prompt.</h1>
+          <p class="eyebrow">Expert-Agent Factory For OpenClaw</p>
+          <h1>Build, validate, ship, and operate a vertical expert agent.</h1>
           <p class="lede">
-            Vertical Agent Forge adds a durable improvement loop around your
-            OpenClaw deployment with bounded role agents, release gates,
-            artifact contracts, and hot-plug installation.
+            Vertical Agent Forge 2.0 turns an OpenClaw deployment into a
+            vertical expert-agent factory with compiled domain assets, a
+            control-plane plugin, connector diagnostics, strict release gates,
+            and automatic rollback paths.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="https://github.com/mbdtf202-cyber/vertical-agent-forge/releases/latest"
@@ -40,9 +41,9 @@
             >
           </div>
           <ul class="mini-specs">
-            <li>Hot plug into an existing OpenClaw home</li>
-            <li>Worker, Critic, Adversary, Promoter, Archivist</li>
-            <li>Durable task and wake orchestration</li>
+            <li>Kit plus companion control-plane plugin</li>
+            <li>Domain compiler, evaluator, deployer, observer</li>
+            <li>Strict activation, canary, incidents, rollback</li>
           </ul>
         </div>
         <div class="hero-panel">
@@ -53,16 +54,16 @@
               <span class="dot green"></span>
             </div>
             <div class="hero-metric">
-              <span>app-main</span>
-              <strong>User Delivery</strong>
+              <span>compiled domain pack</span>
+              <strong>Structured business knowledge</strong>
             </div>
             <div class="hero-metric">
-              <span>app-forge</span>
-              <strong>Continuous Improvement</strong>
+              <span>control plane</span>
+              <strong>Validation, metrics, incidents, connectors</strong>
             </div>
             <div class="hero-metric">
-              <span>release gate</span>
-              <strong>Evidence Before Promotion</strong>
+              <span>full auto</span>
+              <strong>Canary first, rollback on breach</strong>
             </div>
           </div>
         </div>
@@ -70,39 +71,39 @@
 
       <section class="panel-grid">
         <article class="panel">
-          <h2>Purpose-built roles</h2>
+          <h2>Factory roles</h2>
           <p>
-            Split user delivery from quality control. Keep one runtime focused
-            on users and another on improvement.
+            Separate delivery, compilation, evaluation, deployment, and
+            monitoring instead of hiding everything in one prompt.
           </p>
           <ul>
-            <li><code>app-main</code> handles the customer conversation</li>
-            <li><code>app-forge</code> owns the loop</li>
-            <li>Subagents stay bounded and accountable</li>
+            <li><code>app-main</code> serves the user</li>
+            <li><code>app-domain-compiler</code> compiles the domain pack</li>
+            <li><code>app-evaluator</code>, <code>app-deployer</code>, and <code>app-observer</code> close the loop</li>
           </ul>
         </article>
         <article class="panel">
-          <h2>Durable orchestration</h2>
+          <h2>Compiled domain system</h2>
           <p>
-            Use the OpenClaw runtime you already have: <code>task</code>,
-            <code>continuous-worker</code>, wakes, and subagents.
+            Raw business materials become compiled policies, glossary, action
+            catalog, eval seeds, routing rules, and metric definitions.
           </p>
           <ul>
-            <li>Progress persists across runs</li>
-            <li>Wake schedules survive beyond one chat turn</li>
-            <li>Artifacts stay in files, not only in transcripts</li>
+            <li>Business truth lives in files, not only transcripts</li>
+            <li>Compiler outputs are deterministic and testable</li>
+            <li>Reference SaaS Support pack ships end to end</li>
           </ul>
         </article>
         <article class="panel">
-          <h2>Release discipline</h2>
+          <h2>Control-plane automation</h2>
           <p>
-            Every change passes through proposal, critique, adversarial review,
-            and promotion.
+            Every change passes through validation, rollout evidence, connector
+            checks, promotion gates, and breach-triggered rollback.
           </p>
           <ul>
-            <li>Candidate artifacts</li>
-            <li>Scorecards and attack reports</li>
-            <li>Decision and distillation records</li>
+            <li>Snapshot, jobs, metrics, connectors, incidents</li>
+            <li>Strict activation by default</li>
+            <li>Canary-first deployment with auto rollback</li>
           </ul>
         </article>
       </section>
@@ -132,9 +133,9 @@
           <div class="compare-card featured">
             <h3>Vertical Agent Forge</h3>
             <ul>
-              <li>Durable task and wake runtime</li>
-              <li>Bounded roles with explicit gates</li>
-              <li>Reusable artifacts, memory, and release assets</li>
+              <li>Compiled domain pack plus runtime control plane</li>
+              <li>Bounded roles with explicit gates and anti-stall pivots</li>
+              <li>Reusable artifacts, memory, release assets, and rollback logic</li>
             </ul>
           </div>
         </div>
@@ -143,30 +144,33 @@
       <section class="workflow" id="workflow">
         <div class="section-head centered">
           <p class="eyebrow">Workflow</p>
-          <h2>From user traffic to durable lessons</h2>
+          <h2>From raw source material to live vertical expertise</h2>
         </div>
         <div class="flow-row">
-          <div class="flow-card">User Traffic</div>
+          <div class="flow-card">knowledge/sources</div>
           <div class="flow-arrow">→</div>
-          <div class="flow-card">app-main</div>
+          <div class="flow-card">app-domain-compiler</div>
           <div class="flow-arrow">→</div>
-          <div class="flow-card">forge inbox</div>
+          <div class="flow-card">compiled domain pack</div>
           <div class="flow-arrow">→</div>
-          <div class="flow-card accent">app-forge</div>
+          <div class="flow-card accent">app-main + app-forge</div>
         </div>
         <div class="flow-row secondary">
           <div class="flow-card slim">Worker</div>
+          <div class="flow-card slim">Evaluator</div>
           <div class="flow-card slim">Critic</div>
           <div class="flow-card slim">Adversary</div>
           <div class="flow-card slim">Promoter</div>
-          <div class="flow-card slim">Archivist</div>
+          <div class="flow-card slim">Deployer</div>
+          <div class="flow-card slim">Observer</div>
         </div>
         <div class="artifact-stack">
           <div class="artifact">candidate.json</div>
+          <div class="artifact">rollout.json</div>
           <div class="artifact">critic.json</div>
           <div class="artifact">adversary.json</div>
           <div class="artifact">decision.json</div>
-          <div class="artifact">distill.json</div>
+          <div class="artifact">incident.json</div>
         </div>
       </section>
 
@@ -199,8 +203,8 @@
         <div class="panel-grid">
           <article class="panel">
             <h2>SaaS Support</h2>
-            <p>Billing policy, upgrades, refunds, plan eligibility.</p>
-            <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
+            <p>Billing policy, refunds, plan eligibility, ticket fixtures, and metric thresholds.</p>
+            <pre><code>node ./bin/vertical-agent-forge.mjs bootstrap --domain saas-support</code></pre>
           </article>
           <article class="panel">
             <h2>Travel Concierge</h2>
@@ -218,16 +222,16 @@
       <section class="cli" id="cli">
         <div class="section-head centered">
           <p class="eyebrow">CLI Lifecycle</p>
-          <h2>Install, activate, inspect, remove</h2>
+          <h2>Bootstrap, validate, evaluate, ship, rollback</h2>
         </div>
         <div class="code-grid">
-          <pre><code>node ./bin/vertical-agent-forge.mjs install</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs activate</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs init --domain saas-support</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs upgrade</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs doctor</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs uninstall</code></pre>
-          <pre><code>node ./bin/vertical-agent-forge.mjs uninstall --purge-workspace</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs bootstrap --domain saas-support</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs doctor --deep</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs validate</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs run-evals --case CASE-20260317-001 --stage canary</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs deploy --case CASE-20260317-001 --stage live</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs rollback --case CASE-20260317-001 --reason "canary breach"</code></pre>
+          <pre><code>node ./bin/vertical-agent-forge.mjs status --deep</code></pre>
         </div>
       </section>
 
@@ -238,9 +242,9 @@
         </div>
         <div class="pricing-grid">
           <div class="price-card">
-            <h3>Toolkit</h3>
+            <h3>Factory Toolkit</h3>
             <strong>Free</strong>
-            <p>MIT-licensed product repository and release artifacts.</p>
+            <p>MIT-licensed kit plus companion plugin release assets.</p>
           </div>
           <div class="price-card">
             <h3>Runtime Cost</h3>
